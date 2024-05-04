@@ -12,8 +12,10 @@ export const CitiesGallery = () => {
   const navigate = useNavigate();
 
   const loadData = async () => {
-    const response = await PropertyService.getCities();
+    const response = await PropertyService.getBooks();
     setItems(response?.data);
+
+    console.log("Books ", items)
   };
 
   const handlePrev = () => {
@@ -44,13 +46,11 @@ export const CitiesGallery = () => {
         <div
           className={cl.small}
           onClick={() => {
-            navigate("/search", {
-              state: { city: items[selected - 1]?._id },
-            });
+            navigate(`/property/${items[selected - 1]?._id }`);
           }}
           style={{
             background: `url(${
-              items[selected - 1]?.image
+              items[selected - 1]?.images[0]
             }`,
           }}
         >
@@ -74,7 +74,7 @@ export const CitiesGallery = () => {
             }`,
           }}
           onClick={() => {
-            navigate("/search", { state: { city: items[selected]?._id } });
+            navigate(`/property/${items[selected]?._id }`);
           }}
         >
           <div className={cl.city}>
@@ -93,13 +93,11 @@ export const CitiesGallery = () => {
           className={cl.small}
           style={{
             background: `url(${
-              items[selected + 1]?.image
+              items[selected + 1]?.images[0]
             }`,
           }}
           onClick={() => {
-            navigate("/search", {
-              state: { city: items[selected + 1]?._id },
-            });
+            navigate(`/property/${items[selected + 1]?._id }`);
           }}
         >
           <div className={cl.city}>
@@ -125,11 +123,11 @@ export const CitiesGallery = () => {
               className={cl.card}
               style={{
                 background: `url(${
-                 item?.image
+                 item?.images[0]
                 })`,
               }}
               onClick={() => {
-                navigate("/search", { state: { city: items[selected]?._id } });
+                navigate(`/property/${items[selected]?._id }`);
               }}
             >
               <div className={cl.cardTop}>

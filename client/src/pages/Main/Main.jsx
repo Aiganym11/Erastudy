@@ -34,8 +34,8 @@ export const Main = () => {
   const settings = useSelector((state) => state.settings);
 
   const loadData = async () => {
-    const sales = await PropertyService.getSales(1, 5, true);
-    const auctions = await PropertyService.getAuctions(1, 5, true);
+    const sales = await PropertyService.getCourses(1, 5, true);
+    const auctions = await PropertyService.getBooks(1, 5, true);
     const business = await PropertyService.getBusinesses(1, 5, true);
     const invest = await PropertyService.getInvestOffers(1, 5, true);
 
