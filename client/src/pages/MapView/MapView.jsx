@@ -48,7 +48,7 @@ export const MapView = () => {
     propertyType: [
       {
         id: 1,
-        text: "Жилая недвижимость",
+        text: "Книги",
         value: null,
         isChecked: false,
         name: "residentialProperty",
