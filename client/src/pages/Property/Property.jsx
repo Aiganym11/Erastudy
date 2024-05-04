@@ -215,16 +215,18 @@ export const Property = () => {
         center: [1, 1],
         zoom: 12,
       });
+
+      console.log(17, res?.data?.developer)
       const developer = await PropertyService.getDeveloper(
-        res?.data?.developer
+        res?.data?.developer || res?.data?.author
       );
+      console.log(16, developer)
       setDeveloper(developer.data);
       return res;
     });
 
     setProperty(property.data);
     const propertyData = [
-      property?.data?.building,
       property?.data?.description,
       property?.data?.dealOverview,
       property?.data?.dealProfitability,
@@ -265,7 +267,7 @@ export const Property = () => {
       restart(new Date(property.timer), true);
     }
     console.log(property);
-    console.log(questionData);
+    console.log(99, questionData);
   }, [property]);
 
   return (
