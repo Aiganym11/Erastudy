@@ -284,8 +284,6 @@ class PropertyService {
       const priceConditions =
         price.length > 0 ? [{ price: { $gte: minPrice, $lte: maxPrice } }] : [];
 
-      const isCompletedConditions =
-        isCompleted.length > 0 ? [{ isCompleted: { $in: isCompleted } }] : [];
 
       const maxPriceProperty = await models.Property.findOne({})
         .sort({ price: -1 })
@@ -293,21 +291,7 @@ class PropertyService {
         .exec();
 
       const now = new Date();
-      const query = [
-        {
-          saleType: { $ne: "auccion" },
-          isTimer: false,
-          isBooked: false,
-          isSold: false,
-          $or: [
-            { isTimer: false },
-            {
-              isTimer: true,
-              $or: [{ timer: { $exists: false } }, { timer: { $gte: now } }],
-            },
-          ],
-        },
-      ];
+      const query = [];
 
       const countPromises = [
         models.Property.countDocuments(query),
@@ -316,15 +300,6 @@ class PropertyService {
             ...query,
             { directions: "Книги" },
             ...priceConditions,
-            ...isCompletedConditions,
-          ],
-        }),
-        models.Property.countDocuments({
-          $and: [
-            ...query,
-            { directions: "Менторы" },
-            ...priceConditions,
-            ...isCompletedConditions,
           ],
         }),
         models.Property.countDocuments({
@@ -332,68 +307,21 @@ class PropertyService {
             ...query,
             { directions: "Курсы" },
             ...priceConditions,
-            ...isCompletedConditions,
           ],
-        }),
-        models.Property.countDocuments({
-          $and: [
-            ...query,
-            ...directionConditions,
-            ...isCompletedConditions,
-            ...priceConditions,
-          ],
-        }),
-        models.Property.countDocuments({
-          $and: [
-            ...query,
-            ...directionConditions,
-            ...isCompletedConditions,
-            ...priceConditions,
-          ],
-        }),
-        models.Property.countDocuments({
-          $and: [
-            ...query,
-            ...directionConditions,
-            ...isCompletedConditions,
-            ...priceConditions,
-          ],
-        }),
-        models.Property.countDocuments({
-          $and: [
-            ...query,
-            { isCompleted: true },
-            ...directionConditions,
-            ...priceConditions,
-          ],
-        }),
-        models.Property.countDocuments({
-          $and: [
-            ...query,
-            { isCompleted: false },
-            ...directionConditions,
-            ...priceConditions,
-          ],
-        }),
+        })
       ];
       const [
-        totalProperties,
-        residentialProperty,
-        commercialProperty,
-        landProperty,
-        completed,
-        notCompleted,
+        total,
+        books,
+        courses
       ] = await Promise.all(countPromises);
       return {
         status: 200,
         maxPrice: maxPriceProperty.price,
         count: {
-          totalProperties,
-          residentialProperty,
-          commercialProperty,
-          landProperty,
-          completed,
-          notCompleted,
+          total, 
+          books,
+          courses
         },
       };
     } catch (e) {
