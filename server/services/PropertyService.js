@@ -176,7 +176,6 @@ class PropertyService {
     try {
       const {
         directions,
-        isCompleted,
         price,
       } = filters;
 
@@ -203,33 +202,16 @@ class PropertyService {
       const priceConditions =
         price.length > 0 ? [{ price: { $gte: minPrice, $lte: maxPrice } }] : [];
 
-      const isCompletedConditions =
-        isCompleted.length > 0 ? [{ isCompleted: { $in: isCompleted } }] : [];
 
-      const now = new Date();
-      const timerCondition = {
-        isSold: false,
-        isBooked: false,
-        $or: [
-          { isTimer: false },
-          {
-            isTimer: true,
-            $or: [{ timer: { $exists: false } }, { timer: { $gte: now } }],
-          },
-        ],
-      };
       const filterConditions = {
         $and: [
           ...directionConditions,
-          ...priceConditions,
-          ...isCompletedConditions,
-          { saleType: { $ne: "auccion" } },
+          ...priceConditions
         ],
       };
 
       const finalFilterConditions = {
-        ...filterConditions,
-        ...timerCondition,
+        ...filterConditions
       };
 
       const totalProperties = await models.Property.find(finalFilterConditions);

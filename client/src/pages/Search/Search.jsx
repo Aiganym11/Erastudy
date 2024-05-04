@@ -54,13 +54,6 @@ export const Search = () => {
       },
       {
         id: 2,
-        text: "Менторы",
-        value: null,
-        isChecked: false,
-        name: "commercialProperty",
-      },
-      {
-        id: 3,
         text: "Курсы",
         value: null,
         isChecked: false,
@@ -179,11 +172,7 @@ export const Search = () => {
           ...prevProperties.directions[1],
           
           value: propertiesCount?.count.commercialProperty,
-        },
-        {
-          ...prevProperties.directions[2],
-          value: propertiesCount?.count.landProperty,
-        },
+        }
       ]
     }));
   };
