@@ -18,7 +18,7 @@ export const CountriesGallery = () => {
   const navigate = useNavigate();
 
   const loadData = async () => {
-    const response = await PropertyService.getCountries();
+    const response = await PropertyService.getCourses();
     setItems(response?.data);
   };
 
@@ -49,13 +49,11 @@ export const CountriesGallery = () => {
         <div
           className={cl.small}
           onClick={() => {
-            navigate("/search", {
-              state: { country: items[selected - 1]?._id },
-            });
+            navigate(`/property/${items[selected - 1]?._id }`);
           }}
           style={{
             background: `url(${
-              items[selected - 1]?.image
+              items[selected - 1]?.images[0]
             }`,
           }}
         >
@@ -75,11 +73,11 @@ export const CountriesGallery = () => {
           className={cl.big}
           style={{
             background: `url(${
-              items[selected]?.image
+              items[selected]?.images[0]
             }`,
           }}
           onClick={() => {
-            navigate("/search", { state: { country: items[selected]?._id } });
+            navigate(`/property/${items[selected]?._id }`);
           }}
         >
           <div className={cl.city}>
@@ -98,13 +96,11 @@ export const CountriesGallery = () => {
           className={cl.small}
           style={{
             background: `url(${
-              items[selected + 1]?.image
+              items[selected + 1]?.images[0]
             }`,
           }}
           onClick={() => {
-            navigate("/search", {
-              state: { country: items[selected + 1]?._id },
-            });
+            navigate(`/property/${items[selected + 1]?._id }`);
           }}
         >
           <div className={cl.city}>
@@ -131,13 +127,11 @@ export const CountriesGallery = () => {
               className={cl.card}
               style={{
                 background: `url(${
-                  item?.image
+                  item?.images[0]
                 })`,
               }}
               onClick={() => {
-                navigate("/search", {
-                  state: { country: items[selected + 1]?._id },
-                });
+                navigate(`/property/${items[selected + 1]?._id }`);
               }}
             >
               <div className={cl.cardTop}>

@@ -10,7 +10,7 @@ class PropertyController {
     }
   }
 
-  async getSales(page = 1, limit = 5, main = false) {
+  async getCourses(page = 1, limit = 5, main = false) {
     try {
       const req = await $host.get("property/sales", {
         params: {
@@ -25,13 +25,27 @@ class PropertyController {
     }
   }
 
-  async getAuctions(page = 1, limit = 5, main = false) {
+  async getBooks(page = 1, limit = 5, main = false) {
     try {
       const req = await $host.get("property/auctions", {
         params: {
           page: page,
           limit: limit,
           main: main,
+        },
+      });
+      return req.data;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  async getBestBooks() {
+    try {
+      const req = await $host.get("property/books", {
+        params: {
+          page: 1,
+          limit: 5,
         },
       });
       return req.data;
