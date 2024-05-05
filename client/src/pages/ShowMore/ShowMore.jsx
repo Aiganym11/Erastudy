@@ -36,19 +36,19 @@ export const ShowMore = () => {
   };
 
   const loadInvestOffers = async () => {
-    const req = await PropertyService.getInvestOffers(10, page, false);
+    const req = await PropertyService.getCourses(10, page, false);
     setProperties(req.data);
     setName(req.data[0].saleType);
   };
 
   const loadBusinesses = async () => {
-    const req = await PropertyService.getBusinesses(10, page, false);
+    const req = await PropertyService.getCourses(10, page, false);
     setProperties(req.data);
     setName(req.data[0].saleType);
   };
 
   const loadSales = async () => {
-    const req = await PropertyService.getSales(10, page, false);
+    const req = await PropertyService.getCourses(10, page, false);
     setProperties(req.data);
     setName(req.data[0].saleType);
   };

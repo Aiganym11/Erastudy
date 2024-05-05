@@ -15,19 +15,32 @@ import { Payment } from "../pages/Payment/Payment";
 import { Gallery } from "../pages/Gallery/Gallery";
 import { ShowMore } from "../pages/ShowMore/ShowMore";
 import { EditProfile } from "../pages/EditProfile/EditProfile.jsx";
+import { Reviews } from "../pages/Reviews/Reviews";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <PageWrapper Component={<Main />} />,
+    element: (
+      <PageWrapper>
+        <Main />
+      </PageWrapper>
+    ),
   },
   {
     path: "/search",
-    element: <PageWrapper Component={<Search />} />,
+    element: (
+      <PageWrapper>
+        <Search />
+      </PageWrapper>
+    ),
   },
   {
     path: "/faq",
-    element: <PageWrapper Component={<FAQ />} />,
+    element: (
+      <PageWrapper>
+        <FAQ />
+      </PageWrapper>
+    ),
   },
   {
     path: "/login",
@@ -47,11 +60,19 @@ export const router = createBrowserRouter([
   },
   {
     path: "/property/:id",
-    element: <PageWrapper Component={<Property />} />,
+    element: (
+      <PageWrapper>
+        <Property />
+      </PageWrapper>
+    ),
   },
   {
     path: "/map",
-    element: <PageWrapper Component={<MapView />} />,
+    element: (
+      <PageWrapper>
+        <MapView />
+      </PageWrapper>
+    ),
   },
   {
     path: "/*",
@@ -59,20 +80,44 @@ export const router = createBrowserRouter([
   },
   {
     path: "/payment/:id",
-    element: <PageWrapper Component={<Payment />} />,
+    element: (
+      <PageWrapper>
+        <Payment />
+      </PageWrapper>
+    ),
   },
   {
     path: "/property/:id/gallery",
-    element: <PageWrapper Component={<Gallery />} />,
+    element: (
+      <PageWrapper>
+        <Gallery />
+      </PageWrapper>
+    ),
   },
   {
     path: "/all/:category",
-    element: <PageWrapper Component={<ShowMore />} />,
+    element: (
+      <PageWrapper>
+        <ShowMore />
+      </PageWrapper>
+    ),
   },
   {
     path: "/editProfile/:id",
-    element: <PageWrapper Component={<EditProfile />} />,
+    element: (
+      <PageWrapper>
+        <EditProfile />
+      </PageWrapper>
+    ),
   },
+  {
+    path: "/reviews",
+    element: (
+      <PageWrapper>
+        <Reviews />
+      </PageWrapper>
+    ),
+  }
 ]);
 
 export const LoadingRoute = createBrowserRouter([
@@ -89,23 +134,43 @@ export const LoadingRoute = createBrowserRouter([
 export const AuthRouter = createBrowserRouter([
   {
     path: "/",
-    element: <PageWrapper Component={<Main />} />,
+    element: (
+      <PageWrapper>
+        <Main />
+      </PageWrapper>
+    ),
   },
   {
     path: "/property/:id/gallery",
-    element: <PageWrapper Component={<Gallery />} />,
+    element: (
+      <PageWrapper>
+        <Gallery />
+      </PageWrapper>
+    ),
   },
   {
     path: "/profile",
-    element: <PageWrapper Component={<Profile />} />,
+    element: (
+      <PageWrapper>
+        <Profile />
+      </PageWrapper>
+    ),
   },
   {
     path: "/search",
-    element: <PageWrapper Component={<Search />} />,
+    element: (
+      <PageWrapper>
+        <Search />
+      </PageWrapper>
+    ),
   },
   {
     path: "/faq",
-    element: <PageWrapper Component={<FAQ />} />,
+    element: (
+      <PageWrapper>
+        <FAQ />
+      </PageWrapper>
+    ),
   },
   {
     path: "/forgotPassword",
@@ -113,11 +178,19 @@ export const AuthRouter = createBrowserRouter([
   },
   {
     path: "/property/:id",
-    element: <PageWrapper Component={<Property />} />,
+    element: (
+      <PageWrapper>
+        <Property />
+      </PageWrapper>
+    ),
   },
   {
     path: "/map",
-    element: <PageWrapper Component={<MapView />} />,
+    element: (
+      <PageWrapper>
+        <MapView />
+      </PageWrapper>
+    ),
   },
   {
     path: "/*",
@@ -125,10 +198,26 @@ export const AuthRouter = createBrowserRouter([
   },
   {
     path: "/payment/:id",
-    element: <PageWrapper Component={<Payment />} />,
+    element: (
+      <PageWrapper>
+        <Payment />
+      </PageWrapper>
+    ),
   },
   {
     path: "/all/:category",
-    element: <PageWrapper Component={<ShowMore />} />,
+    element: (
+      <PageWrapper>
+        <ShowMore />
+      </PageWrapper>
+    ),
   },
+  {
+    path: "/reviews",
+    element: (
+      <PageWrapper>
+        <Reviews />
+      </PageWrapper>
+    ),
+  }
 ]);

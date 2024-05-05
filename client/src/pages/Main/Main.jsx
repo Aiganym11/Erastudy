@@ -275,7 +275,7 @@ export const Main = () => {
                   </div>
                   <Link
                     className={`${cl.more} title_md`}
-                    to='/all/investment-deals'
+                    to='/reviews'
                   >
                     {t("section2.more")}
                   </Link>
