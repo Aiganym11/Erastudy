@@ -19,6 +19,7 @@ import PropertyService from "../../service/PropertyService";
 import cl from "./Main.module.css";
 import { CitiesGallery } from "../../modules/CitiesGallery/CitiesGallery";
 import { CountriesGallery } from "../../modules/CountriesGallery/CountriesGallery.jsx";
+import { ReviewsGallery } from "../../modules/ReviewsGallery/ReviewsGallery.jsx";
 
 export const Main = () => {
   const navigate = useNavigate();
@@ -280,6 +281,10 @@ export const Main = () => {
                     {t("section2.more")}
                   </Link>
                 </div>
+
+                <div className={cl.gallery}>
+                <ReviewsGallery />
+              </div>
 
                 <div className={cl.items}>
                   {isLoading
