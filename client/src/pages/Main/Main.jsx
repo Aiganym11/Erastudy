@@ -19,6 +19,7 @@ import PropertyService from "../../service/PropertyService";
 import cl from "./Main.module.css";
 import { CitiesGallery } from "../../modules/CitiesGallery/CitiesGallery";
 import { CountriesGallery } from "../../modules/CountriesGallery/CountriesGallery.jsx";
+import { ReviewsGallery } from "../../modules/ReviewsGallery/ReviewsGallery.jsx";
 
 export const Main = () => {
   const navigate = useNavigate();
@@ -34,8 +35,8 @@ export const Main = () => {
   const settings = useSelector((state) => state.settings);
 
   const loadData = async () => {
-    const sales = await PropertyService.getSales(1, 5, true);
-    const auctions = await PropertyService.getAuctions(1, 5, true);
+    const sales = await PropertyService.getCourses(1, 5, true);
+    const auctions = await PropertyService.getBooks(1, 5, true);
     const business = await PropertyService.getBusinesses(1, 5, true);
     const invest = await PropertyService.getInvestOffers(1, 5, true);
 
@@ -275,11 +276,15 @@ export const Main = () => {
                   </div>
                   <Link
                     className={`${cl.more} title_md`}
-                    to='/all/investment-deals'
+                    to='/reviews'
                   >
                     {t("section2.more")}
                   </Link>
                 </div>
+
+                <div className={cl.gallery}>
+                <ReviewsGallery />
+              </div>
 
                 <div className={cl.items}>
                   {isLoading
