@@ -22,6 +22,7 @@ export const Property = () => {
   const [developer, setDeveloper] = useState(null);
   const [activeButton, setActiveButton] = useState(0);
   const [questionData, setQuestionData] = useState([]);
+  const [courseRating, setCourseRating] = useState(0);
   const navigate = useNavigate();
 
   const [descriptions, setDescriptions] = useState([]);
@@ -93,6 +94,9 @@ export const Property = () => {
       );
       console.log(16, developer)
       setDeveloper(developer.data);
+      if(res?.data?.rating){
+        setCourseRating(res?.data?.rating);
+      }
       return res;
     });
 
@@ -153,6 +157,18 @@ export const Property = () => {
                   <div className={cl.valueRight}>
                     {property ? (
                       `${maskToPrice(property.price)}`
+                    ) : (
+                      <Skeleton width={150} />
+                    )}
+                  </div>
+                </div>
+              </div>
+              <div className={cl.subtitle}>
+                <div className={cl.subtitleLeft}>
+                  <div className={cl.type}>{ "Rating "}</div>
+                  <div className={cl.valueLeft}>
+                    {property ? (
+                      `${courseRating} / 5`
                     ) : (
                       <Skeleton width={150} />
                     )}

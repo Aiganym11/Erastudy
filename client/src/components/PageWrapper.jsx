@@ -9,22 +9,20 @@ import { useState } from "react";
 import tg from "../assets/images/tg.png";
 import { Icon } from "./UI/Icon/Icon.jsx";
 import { useTranslation } from "react-i18next";
-export const PageWrapper = (props) => {
+export const PageWrapper = ({ children }) => {
   const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { t } = useTranslation();
+
   const tgHandler = () => {
     setIsModalOpen(false);
     window.open("https://t.me/inlotKzBot");
   };
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const { t } = useTranslation();
+
   return (
     <div className='main'>
       <div className={"floatingButton"}>
-        <div
-          onClick={() => {
-            navigate("/faq");
-          }}
-        >
+        <div onClick={() => navigate("/faq")}>
           <FloatingButton />
         </div>
       </div>
@@ -37,7 +35,7 @@ export const PageWrapper = (props) => {
       <nav className='nav'>
         <Navbar />
       </nav>
-      {props.Component}
+      {children} {/* Render the passed children here */}
       <Footer />
       {isModalOpen && (
         <Modal onClick={() => setIsModalOpen(false)} className='modalTG'>
