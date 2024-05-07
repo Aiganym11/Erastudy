@@ -12,6 +12,7 @@ import Contact from "./Contact.js";
 import Cities from "./Cities.js";
 import LotContactForm from "./LotContactForm.js";
 import Countries from "./Countries.js";
+import Author from "./Author.js"
 export default {
   Developer,
   Property,
@@ -27,4 +28,5 @@ export default {
   Cities,
   LotContactForm,
   Countries,
+  Author
 };
