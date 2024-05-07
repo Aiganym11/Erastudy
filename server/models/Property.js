@@ -23,7 +23,7 @@ const schema = new mongoose.Schema({
   rating: { type: Number, required: false },
   author: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Developer",
+    ref: "Author",
     required: true,
   },
   info: {

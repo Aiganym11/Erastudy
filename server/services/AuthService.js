@@ -19,32 +19,32 @@ export const generateAccessToken = (data) => {
 class AuthService {
   async login(email, password) {
     try {
-      const condidate = await models.User.findOne({ email });
-      if (!condidate) {
+      const candidate = await models.User.findOne({ email });
+      if (!candidate) {
         return { error: "Email not found", status: 400 };
       }
-      if (!condidate.isVerified) {
+      if (!candidate.isVerified) {
         return { error: "Activate your account", status: 205 };
       }
-      const isMatch = await bcrypt.compare(password, condidate.password);
+      const isMatch = await bcrypt.compare(password, candidate.password);
       if (!isMatch) {
         return { error: "Wrong password", status: 400 };
       }
-      condidate.lastLogin = Date.now();
-      await condidate.save();
+      candidate.lastLogin = Date.now();
+      await candidate.save();
       const token = generateAccessToken({
-        _id: condidate._id,
+        _id: candidate._id,
       });
       return {
         status: 200,
         data: {
           token,
           user: {
-            _id: condidate._id,
-            email: condidate.email,
-            phone: condidate.phone,
-            name: condidate.name,
-            lastLogin: condidate.lastLogin,
+            _id: candidate._id,
+            email: candidate.email,
+            phone: candidate.phone,
+            name: candidate.name,
+            lastLogin: candidate.lastLogin,
           },
         },
       };
@@ -53,20 +53,21 @@ class AuthService {
       return { error: e, status: 500 };
     }
   }
-  async register(email, name) {
+  async register(email, name, type) {
     try {
-      const condidate = await models.User.findOne({ email });
-      if (condidate) {
-        if (condidate.isVerified) {
+      const candidate = await models.User.findOne({ email });
+      if (candidate) {
+        if (candidate.isVerified) {
           return { error: "Email already exists", status: 400 };
         }
 
-        if (Date.now() - condidate.createdAt > 600000) {
-          await condidate.remove();
+        if (Date.now() - candidate.createdAt > 600000) {
+          await candidate.remove();
           const code = generateRandomArrays();
           const user = await models.User.create({
             email,
             name,
+            type,
             verificationCode: code,
             isVerified: false,
           });
@@ -84,6 +85,7 @@ class AuthService {
       const user = await models.User.create({
         email,
         name,
+        type,
         verificationCode: code,
         isVerified: false,
       });
