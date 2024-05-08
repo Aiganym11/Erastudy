@@ -22,11 +22,7 @@ export const AuthorProfile = () => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const user = useSelector((state) => state.auth.userData);
 
-  const [isDocumentEmpty, setIsDocumentEmpty] = useState(
-    user.iin === undefined ||
-      user.address === undefined ||
-      user.numberOfDocument === undefined
-  );
+  const [isDocumentEmpty, setIsDocumentEmpty] = useState(undefined);
   const [editTab, setEditTab] = useState("profile");
   const [isEmailHovered, setIsEmailHovered] = useState(false);
   const [isPhoneHovered, setIsPhoneHovered] = useState(false);
