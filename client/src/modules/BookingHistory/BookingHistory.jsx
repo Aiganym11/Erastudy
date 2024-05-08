@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { PropertyCard } from "../../components/UI/PropertyCard/PropertyCard";
+import { ProductCard } from "../../components/UI/ProductCard/ProductCard";
 import { useSelector } from "react-redux";
-import PropertyService from "../../service/PropertyService";
+import ProductService from "../../service/ProductService";
 import cl from "../BuyHistory/BuyHistory.module.css";
 import { Icon } from "../../components/UI/Icon/Icon.jsx";
 import { Pagination } from "../../components/UI/Pagination/Pagination.jsx";
@@ -19,12 +19,12 @@ export const BookingHistory = ({ activeTab, isCLoading }) => {
   const startIndex = (page - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const loadData = async () => {
-    const buyHistory = await PropertyService.getBuyHistory(userData._id);
+    const buyHistory = await ProductService.getBuyHistory(userData._id);
     const buyHistoryLength = buyHistory?.data?.booked?.length;
     setItems(
       await Promise.all(
         buyHistory?.data?.booked?.map(async (item) => {
-          const res = await PropertyService.getProperty(item.property);
+          const res = await ProductService.getProduct(item.product);
           return res.data;
         })
       )
@@ -55,7 +55,7 @@ export const BookingHistory = ({ activeTab, isCLoading }) => {
         <div className={cl.items}>
           {isLoading ? (
             Array.from({ length: 6 }).map((_, index) => (
-              <PropertyCard
+              <ProductCard
                 className={cl.card}
                 key={index}
                 customWidth={275}
@@ -66,7 +66,7 @@ export const BookingHistory = ({ activeTab, isCLoading }) => {
             <>
               {items?.map((item) => (
                 <div className={cl.item}>
-                  <PropertyCard
+                  <ProductCard
                     key={item._id}
                     customWidth={275}
                     className={cl.card}

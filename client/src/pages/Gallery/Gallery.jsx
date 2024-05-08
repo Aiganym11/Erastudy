@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import PropertyService from "../../service/PropertyService";
+import ProductService from "../../service/ProductService";
 import cl from "./Gallery.module.css";
 import { Icon } from "../../components/UI/Icon/Icon";
 import { useTranslation } from "react-i18next";
 export const Gallery = () => {
   const { t } = useTranslation();
-  const [property, setProperty] = useState(null);
+  const [product, setProduct] = useState(null);
   const [isError, setIsError] = useState(false);
   const navigate = useNavigate();
   const { id } = useParams();
   const [selectedImage, setSelectedImage] = useState(null);
 
   const loadData = async () => {
-    const res = await PropertyService.getProperty(id);
+    const res = await ProductService.getProduct(id);
     if (res) {
-      setProperty(res.data);
+      setProduct(res.data);
       return;
     }
     setIsError(true);
@@ -24,7 +24,7 @@ export const Gallery = () => {
   const prevImage = (e) => {
     e.stopPropagation();
     if (selectedImage === 0) {
-      setSelectedImage(property?.images.length - 1);
+      setSelectedImage(product?.images.length - 1);
       return;
     }
     setSelectedImage(selectedImage - 1);
@@ -32,7 +32,7 @@ export const Gallery = () => {
 
   const nextImage = (e) => {
     e.stopPropagation();
-    if (selectedImage === property?.images.length - 1) {
+    if (selectedImage === product?.images.length - 1) {
       setSelectedImage(0);
       return;
     }
@@ -50,36 +50,36 @@ export const Gallery = () => {
   return (
     <div className={cl.root}>
       <div className='wrapper'>
-        <div className={cl.back} onClick={() => navigate(`/property/${id}`)}>
+        <div className={cl.back} onClick={() => navigate(`/product/${id}`)}>
           <div className={cl.icon}>
             <Icon name='arrowRight' />
           </div>
           <div className={cl.backText}>{t("gallery.back")}</div>
         </div>
         <div className={cl.mainImage}>
-          {property?.video ? (
+          {product?.video ? (
             <video
               className={cl.img}
-              src={property?.video}
+              src={product?.video}
               controls
             ></video>
           ) : (
             <img
               onClick={() =>
                 setSelectedImage(
-                  // import.meta.env.VITE_UPLOAD_URL + property?.images[0]
+                  // import.meta.env.VITE_UPLOAD_URL + product?.images[0]
                   0
                 )
               }
               className={cl.img}
-              src={property?.images[0]}
+              src={product?.images[0]}
               alt='main'
             />
           )}
         </div>
         <div className={cl.otherImages}>
-          {property?.images.map((image, index) => {
-            if (index === 0 && !property?.video) {
+          {product?.images.map((image, index) => {
+            if (index === 0 && !product?.video) {
               return null;
             }
             return (
@@ -115,7 +115,7 @@ export const Gallery = () => {
               <img
                 src={
                 
-                  property?.images[selectedImage]
+                  product?.images[selectedImage]
                 }
                 className={cl.img}
                 alt=''

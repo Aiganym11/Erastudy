@@ -4,7 +4,7 @@ import { Main } from "../pages/Main/Main";
 import { Login } from "../pages/Auth/Login/Login";
 import { Register } from "../pages/Auth/Register/Register";
 import { Verify } from "../pages/Auth/Verify/Verify";
-import { Property } from "../pages/Property/Property";
+import { Product } from "../pages/Product/Product";
 import { Search } from "../pages/Search/Search";
 import { Loader } from "../components/UI/Loader/Loader";
 import { FAQ } from "../pages/FAQ/FAQ.jsx";
@@ -59,10 +59,10 @@ export const router = createBrowserRouter([
     element: <Verify />,
   },
   {
-    path: "/property/:id",
+    path: "/product/:id",
     element: (
       <PageWrapper>
-        <Property />
+        <Product />
       </PageWrapper>
     ),
   },
@@ -87,7 +87,7 @@ export const router = createBrowserRouter([
     ),
   },
   {
-    path: "/property/:id/gallery",
+    path: "/product/:id/gallery",
     element: (
       <PageWrapper>
         <Gallery />
@@ -141,7 +141,7 @@ export const AuthRouter = createBrowserRouter([
     ),
   },
   {
-    path: "/property/:id/gallery",
+    path: "/product/:id/gallery",
     element: (
       <PageWrapper>
         <Gallery />
@@ -177,10 +177,10 @@ export const AuthRouter = createBrowserRouter([
     element: <ForgotPassword />,
   },
   {
-    path: "/property/:id",
+    path: "/product/:id",
     element: (
       <PageWrapper>
-        <Property />
+        <Product />
       </PageWrapper>
     ),
   },

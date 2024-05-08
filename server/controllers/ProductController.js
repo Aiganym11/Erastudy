@@ -1,25 +1,30 @@
-import PropertyService from "../services/PropertyService.js";
+import ProductService from "../services/ProductService.js";
 
-class PropertyController {
+class ProductController {
   async getAll(req, res) {
-    const response = await PropertyService.getAll();
+    const response = await ProductService.getAll();
     return res.status(response.status).json(response);
   }
 
   async getBought(req, res) {
-    const response = await PropertyService.getBoughtProperties(
+    const response = await ProductService.getBoughtProperties(
       req.user.data._id
     );
     return res.status(response.status).json(response);
   }
 
   async getDeveloper(req, res) {
-    const response = await PropertyService.getDeveloper(req.params.id);
+    const response = await ProductService.getDeveloper(req.params.id);
+    return res.status(response.status).json(response);
+  }
+
+  async getAuthor(req, res) {
+    const response = await ProductService.getAuthor(req.params.id);
     return res.status(response.status).json(response);
   }
 
   async getById(req, res) {
-    const response = await PropertyService.getById(req.params.id);
+    const response = await ProductService.getById(req.params.id);
     return res.status(response.status).json(response);
   }
 
@@ -35,7 +40,7 @@ class PropertyController {
     try {
       const { page, limit, main } = req.query;
       console.log(12, main)
-      const response = await PropertyService.getAllSales(page, limit, main);
+      const response = await ProductService.getAllSales(page, limit, main);
       return res.status(response.status).json(response);
     } catch (e) {
       console.log(e);
@@ -46,7 +51,7 @@ class PropertyController {
   async getAllAuctions(req, res) {
     try {
       const { page, limit, main } = req.query;
-      const response = await PropertyService.getAllAuctions(page, limit, main);
+      const response = await ProductService.getAllAuctions(page, limit, main);
       return res.status(response.status).json(response);
     } catch (e) {
       console.log(e);
@@ -57,7 +62,7 @@ class PropertyController {
   async getAllBusinesses(req, res) {
     try {
       const { page, limit, main } = req.query;
-      const response = await PropertyService.getAllBusinesses(
+      const response = await ProductService.getAllBusinesses(
         page,
         limit,
         main
@@ -72,7 +77,7 @@ class PropertyController {
   async getAllInvestOffers(req, res) {
     try {
       const { page, limit, main } = req.query;
-      const response = await PropertyService.getAllInvestOffers(
+      const response = await ProductService.getAllInvestOffers(
         page,
         limit,
         main
@@ -89,7 +94,7 @@ class PropertyController {
       const { page, limit } = req.query;
       const { filters, currentSort } = req.body;
       const { properties, totalProperties } =
-        await PropertyService.getFilteredProperties(
+        await ProductService.getFilteredProperties(
           filters,
           currentSort,
           page,
@@ -112,7 +117,7 @@ class PropertyController {
       const { page, limit } = req.query;
       const currentSort = req.body;
       const { properties, totalProperties } =
-        await PropertyService.getAllProperties(page, limit, currentSort);
+        await ProductService.getAllProperties(page, limit, currentSort);
       if (properties) {
         res.setHeader("x-total-count", totalProperties);
         res.setHeader("Access-Control-Expose-Headers", "x-total-count");
@@ -127,7 +132,7 @@ class PropertyController {
   async getCountProperties(req, res) {
     try {
       const filters = req.body;
-      const { maxPrice, count } = await PropertyService.getCountProperties(
+      const { maxPrice, count } = await ProductService.getCountProperties(
         filters
       );
       return res.status(200).json({ maxPrice, count });
@@ -141,27 +146,7 @@ class PropertyController {
     try {
       console.log(req.body);
       const { id } = req.body;
-      const response = await PropertyService.contact(req.user.data._id, id);
-      return res.status(response.status).json(response);
-    } catch (e) {
-      console.log(e);
-      return res.status(500).json(e);
-    }
-  }
-
-  async getCities(req, res) {
-    try {
-      const response = await PropertyService.getCities();
-      return res.status(response.status).json(response);
-    } catch (e) {
-      console.log(e);
-      return res.status(500).json(e);
-    }
-  }
-
-  async getCountries(req, res) {
-    try {
-      const response = await PropertyService.getCountries();
+      const response = await ProductService.contact(req.user.data._id, id);
       return res.status(response.status).json(response);
     } catch (e) {
       console.log(e);
@@ -170,4 +155,4 @@ class PropertyController {
   }
 }
 
-export default new PropertyController();
+export default new ProductController();

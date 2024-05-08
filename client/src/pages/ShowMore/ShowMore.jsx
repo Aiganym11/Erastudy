@@ -7,8 +7,8 @@ import { Breadcrumbs } from "../../components/UI/Breadcrumbs/Breadcrumbs";
 import bg from "../../assets/images/background.jpeg";
 import { Advertisement } from "../../components/UI/Advertisement/Advertisement";
 import { useNavigate, useParams } from "react-router-dom";
-import PropertyService from "../../service/PropertyService";
-import { PropertyCard } from "../../components/UI/PropertyCard/PropertyCard";
+import ProductService from "../../service/ProductService";
+import { ProductCard } from "../../components/UI/ProductCard/ProductCard";
 import { useSelector } from "react-redux";
 import { Modal } from "../../components/UI/Modal/Modal";
 
@@ -29,26 +29,26 @@ export const ShowMore = () => {
   const [name, setName] = useState("");
   const [page, setPage] = useState(0);
   const loadAuctions = async () => {
-    const req = await PropertyService.getAuctions(10, page, false);
+    const req = await ProductService.getAuctions(10, page, false);
     console.log(req);
     setProperties(req.data);
     setName(req.data[0].saleType);
   };
 
   const loadInvestOffers = async () => {
-    const req = await PropertyService.getCourses(10, page, false);
+    const req = await ProductService.getCourses(10, page, false);
     setProperties(req.data);
     setName(req.data[0].saleType);
   };
 
   const loadBusinesses = async () => {
-    const req = await PropertyService.getCourses(10, page, false);
+    const req = await ProductService.getCourses(10, page, false);
     setProperties(req.data);
     setName(req.data[0].saleType);
   };
 
   const loadSales = async () => {
-    const req = await PropertyService.getCourses(10, page, false);
+    const req = await ProductService.getCourses(10, page, false);
     setProperties(req.data);
     setName(req.data[0].saleType);
   };
@@ -149,7 +149,7 @@ export const ShowMore = () => {
               </div>
               <div
                 className={cl.leftTopButton}
-                onClick={() => navigate(`/property/${properties[0]._id}`)}
+                onClick={() => navigate(`/product/${properties[0]._id}`)}
               >
                 Подробнее
               </div>
@@ -162,7 +162,7 @@ export const ShowMore = () => {
                   without long waiting times and running-in cycles.
                   <div
                     className={cl.RightTopButton}
-                    // onClick={() => navigate(`/property/${properties[0]._id}`)}
+                    // onClick={() => navigate(`/product/${properties[0]._id}`)}
                     onClick={() => {
                       setIsModalOpen(true);
                       setActiveTab("conditionsOfParticipation");
@@ -200,16 +200,16 @@ export const ShowMore = () => {
         <div className={cl.items}>
           {isLoading
             ? Array.from({ length: 20 }).map((i) => (
-                <PropertyCard
+                <ProductCard
                   key={`${i} ${Math.random() * 100000000000000000}`}
-                  className={cl.propertyCard}
+                  className={cl.productCard}
                   item={null}
                 />
               ))
             : properties?.map((item) => (
-                <PropertyCard
+                <ProductCard
                   key={item._id}
-                  className={cl.propertyCard}
+                  className={cl.productCard}
                   item={item}
                 />
               ))}

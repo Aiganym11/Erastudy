@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import cl from "./ReviewsGallery.module.css";
-import PropertyService from "../../service/PropertyService.js";
+import ProductService from "../../service/ProductService.js";
 import { Icon } from "../../components/UI/Icon/Icon.jsx";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -65,7 +65,7 @@ export const ReviewsGallery = () => {
         <div
           className={cl.small}
           onClick={() => {
-            navigate(`/property/${items[selected - 1]?._id }`);
+            navigate(`/product/${items[selected - 1]?._id }`);
           }}
         >
           <div className={cl.city}>
@@ -87,7 +87,7 @@ export const ReviewsGallery = () => {
         <div
           className={cl.big}
           onClick={() => {
-            navigate(`/property/${items[selected]?._id }`);
+            navigate(`/product/${items[selected]?._id }`);
           }}
         >
           <div className={cl.city}>
@@ -108,7 +108,7 @@ export const ReviewsGallery = () => {
         <div
           className={cl.small}
           onClick={() => {
-            navigate(`/property/${items[selected + 1]?._id }`);
+            navigate(`/product/${items[selected + 1]?._id }`);
           }}
         >
           <div className={cl.city}>
@@ -136,7 +136,7 @@ export const ReviewsGallery = () => {
             <div
               className={cl.card}
               onClick={() => {
-                navigate(`/property/${items[selected]?._id }`);
+                navigate(`/product/${items[selected]?._id }`);
               }}
             >
               <div className={cl.cardTop}>

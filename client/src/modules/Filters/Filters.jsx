@@ -4,7 +4,7 @@ import { Button } from "../../components/UI/Button/Button";
 import { Icon } from "../../components/UI/Icon/Icon";
 import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
-import PropertyService from "../../service/PropertyService.js";
+import ProductService from "../../service/ProductService.js";
 
 export const Filters = () => {
   const navigate = useNavigate();
@@ -81,7 +81,7 @@ export const Filters = () => {
   };
 
   const loadData = async () => {
-    const req = await PropertyService.getFilteredProperties(
+    const req = await ProductService.getFilteredProperties(
       filters,
       "priceAscending",
       1,

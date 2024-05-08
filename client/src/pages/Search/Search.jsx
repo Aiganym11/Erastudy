@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import cl from "./Search.module.css";
 import { useTranslation } from "react-i18next";
-import { PropertyCard } from "../../components/UI/PropertyCard/PropertyCard.jsx";
+import { ProductCard } from "../../components/UI/ProductCard/ProductCard.jsx";
 import RangeSlider from "react-range-slider-input";
 import { Breadcrumbs } from "../../components/UI/Breadcrumbs/Breadcrumbs.jsx";
 import { Pagination } from "../../components/UI/Pagination/Pagination.jsx";
 import { Advertisement } from "../../components/UI/Advertisement/Advertisement.jsx";
 import { SelectionBlock } from "../../components/UI/SelectionBlock/SelectionBlock.jsx";
 import { SelectionBox } from "../../components/UI/SelectionBox/SelectionBox.jsx";
-import PropertyService from "../../service/PropertyService.js";
+import ProductService from "../../service/ProductService.js";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Icon } from "../../components/UI/Icon/Icon";
 import validate from "../../utils/validate.js";
@@ -33,7 +33,7 @@ export const Search = () => {
   const [selectedCity, setSelectedCity] = useState("");
   const settings = useSelector((state) => state.settings);
   const [cities, setCities] = useState([]);
-  const [isPropertyTypeExpanded, setIsPropertyTypeExpanded] = useState(
+  const [isProductTypeExpanded, setIsProductTypeExpanded] = useState(
     location.state?.directions?.length > 0
   );
   const [sortsModalMobileOpen, setSortsModalMobileOpen] = useState(false);
@@ -50,7 +50,7 @@ export const Search = () => {
         text: "Книги",
         value: null,
         isChecked: false,
-        name: "residentialProperty",
+        name: "residentialProduct",
       },
       {
         id: 2,
@@ -130,7 +130,7 @@ export const Search = () => {
       });
     }
     if (!isFilterEmpty()) {
-      const req = await PropertyService.getFilteredProperties(
+      const req = await ProductService.getFilteredProperties(
         filters,
         currentSort,
         page,
@@ -142,7 +142,7 @@ export const Search = () => {
       setTotalPages(Math.ceil(req.headers["x-total-count"] / 12));
       setNumberOfProperties(req.headers["x-total-count"]);
     } else {
-      const req = await PropertyService.getAllProperties(page, 12, currentSort);
+      const req = await ProductService.getAllProperties(page, 12, currentSort);
       setFilteredProperties(req.data);
       setTotalPages(Math.ceil(req.headers["x-total-count"] / 12));
       setNumberOfProperties(req.headers["x-total-count"]);
@@ -160,7 +160,7 @@ export const Search = () => {
         return type;
       })
     }));
-    const propertiesCount = await PropertyService.getCountProperties(filters);
+    const propertiesCount = await ProductService.getCountProperties(filters);
     setProperties((prevProperties) => ({
       ...prevProperties,
       directions: [
@@ -367,7 +367,7 @@ export const Search = () => {
               {isLoading
                 ? Array.from({ length: 12 }, (_, i) => i + 1).map(
                     (property) => (
-                      <PropertyCard
+                      <ProductCard
                         key={property}
                         timer={false}
                         customWidth={275}
@@ -376,7 +376,7 @@ export const Search = () => {
                     )
                   )
                 : filteredProperties.map((property) => (
-                    <PropertyCard
+                    <ProductCard
                       key={property._id}
                       timer={false}
                       // customWidth={275}
@@ -405,7 +405,7 @@ export const Search = () => {
             </div>
             <div className={cl.filters} id={"filters"}>
               <SelectionBlock
-                isChecked={isPropertyTypeExpanded}
+                isChecked={isProductTypeExpanded}
                 title={t("search.filterTitle.1")}
               >
                 {Object.values(properties.directions).map((item) => (

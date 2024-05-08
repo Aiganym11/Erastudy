@@ -35,7 +35,7 @@ app.use(express.json());
 app.use("/uploads", express.static("uploads"));
 
 app.use("/auth", routers.AuthRouter);
-app.use("/property", routers.PropertyRouter);
+app.use("/product", routers.ProductRouter);
 app.use("/settings", routers.SettingsRouter);
 app.use("/payment", routers.PaymentRouter);
 app.use("/lot", routers.LotContactFormRouter);

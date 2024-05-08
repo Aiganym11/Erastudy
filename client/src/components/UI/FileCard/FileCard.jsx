@@ -9,7 +9,7 @@ import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import PropertyService from "../../../service/PropertyService";
+import ProductService from "../../../service/ProductService";
 
 export const FileCard = ({ item, type, customWidth, className, file }) => {
   const { t } = useTranslation();

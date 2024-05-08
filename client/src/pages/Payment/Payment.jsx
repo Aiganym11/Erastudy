@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import PropertyController from "../../service/PropertyService";
+import ProductController from "../../service/ProductService";
 import cl from "./Payment.module.css";
 import img from "../../assets/images/payment.png";
 import { Breadcrumbs } from "../../components/UI/Breadcrumbs/Breadcrumbs";
@@ -14,7 +14,7 @@ import { Icon } from "../../components/UI/Icon/Icon";
 export const Payment = () => {
   const location = useLocation();
   const { t, i18n } = useTranslation();
-  const [property, setProperty] = useState({});
+  const [property, setProduct] = useState({});
   const [selectedType, setSelectedType] = useState(null);
   const [currentStep, setCurrentStep] = useState(0);
   const { id } = useParams();
@@ -23,7 +23,7 @@ export const Payment = () => {
   const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
   const contactHandler = async () => {
-    const req = await PropertyController.cotact(id);
+    const req = await ProductController.cotact(id);
     navigate("/");
   };
   const loadData = async () => {
@@ -31,8 +31,8 @@ export const Payment = () => {
       setIsFile(true);
     }
     if (!id) return;
-    const data = await PropertyController.getProperty(id);
-    setProperty(data);
+    const data = await ProductController.getProduct(id);
+    setProduct(data);
     setName(
       data?.data?.title[
         i18n.language == "en" ? 0 : i18n.language == "ru" ? 1 : 2
