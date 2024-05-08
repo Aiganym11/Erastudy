@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import PropertyController from "../../service/PropertyService";
+import ProductController from "../../service/ProductService";
 import cl from "./PaymentType.module.css";
 import { Button } from "../../components/UI/Button/Button";
 import { maskToPrice } from "../../utils/mask";
@@ -7,15 +7,15 @@ import { useTranslation } from "react-i18next";
 
 export const PaymentType = ({ id, setSelectedType, isFile }) => {
   const { t } = useTranslation();
-  const [property, setProperty] = useState({});
+  const [property, setProduct] = useState({});
   const [selectedOption, setSelectedOption] = useState(null);
   const [isAuction, setIsAuction] = useState(false);
 
   const loadData = async () => {
     console.log(id);
     if (!id) return;
-    const data = await PropertyController.getProperty(id);
-    setProperty(data.data);
+    const data = await ProductController.getProduct(id);
+    setProduct(data.data);
     if (data?.data?.saleType === "auccion") {
       setIsAuction(true);
     }

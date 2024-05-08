@@ -295,9 +295,9 @@ class AuthService {
         return { error: "Server error, fav df", status: 500 };
       }
 
-      const property = await models.Property.findById(productId);
-      if (!property || favorites.items.includes(productId)) {
-        return { error: "Property not found or already in list", status: 400 };
+      const product = await models.Product.findById(productId);
+      if (!product || favorites.items.includes(productId)) {
+        return { error: "Product not found or already in list", status: 400 };
       }
 
       // favorites.properties = favorites.properties.push(productId);
@@ -306,7 +306,7 @@ class AuthService {
       favorites.items = items;
 
       await favorites.save();
-      return { message: "Property added to favorites", status: 200 };
+      return { message: "Product added to favorites", status: 200 };
     } catch (e) {
       console.log(e);
       return { error: e, status: 500 };
@@ -339,10 +339,10 @@ class AuthService {
         return { error: "Server error, fav df", status: 500 };
       }
 
-      const property = await models.Property.findById(productId);
-      if (!property || !favorites.items.includes(productId)) {
+      const product = await models.Product.findById(productId);
+      if (!product || !favorites.items.includes(productId)) {
         return {
-          error: "Property not found or already not in list",
+          error: "Product not found or already not in list",
           status: 400,
         };
       }
@@ -355,7 +355,7 @@ class AuthService {
       favorites.items = items;
 
       await favorites.save();
-      return { message: "Property removed from favorites", status: 200 };
+      return { message: "Product removed from favorites", status: 200 };
     } catch (e) {
       console.log(e);
       return { error: e, status: 500 };

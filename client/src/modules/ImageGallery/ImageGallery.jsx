@@ -28,7 +28,7 @@ export const ImageGallery = ({ images, id, video }) => {
       <div className={cl.root}>
         <div
           className={cl.mainImage}
-          onClick={() => navigate(`/property/${id}/gallery`)}
+          onClick={() => navigate(`/product/${id}/gallery`)}
         > 
         {video ? <video
           src={video}
@@ -54,7 +54,7 @@ export const ImageGallery = ({ images, id, video }) => {
                 if (index > 0)
                   return (
                     <div
-                      onClick={() => navigate(`/property/${id}/gallery`)}
+                      onClick={() => navigate(`/product/${id}/gallery`)}
                       className={cl.twoImage}
                       key={`${image}-${index}-gallery`}
                     >
@@ -73,7 +73,7 @@ export const ImageGallery = ({ images, id, video }) => {
                 if (index > 0)
                   return (
                     <div
-                      onClick={() => navigate(`/property/${id}/gallery`)}
+                      onClick={() => navigate(`/product/${id}/gallery`)}
                       className={cl.twoImage}
                       key={`${image}-${index}-gallery`}
                     >
@@ -88,7 +88,7 @@ export const ImageGallery = ({ images, id, video }) => {
           ) : images?.length === 4 ? (
             <div className={cl.threeImages}>
               <div
-                onClick={() => navigate(`/property/${id}/gallery`)}
+                onClick={() => navigate(`/product/${id}/gallery`)}
                 className={`${cl.threeImage} ${cl.threeFirst}`}
                 key={`${images[1]}--gallery`}
               >
@@ -98,7 +98,7 @@ export const ImageGallery = ({ images, id, video }) => {
                 />
               </div>
               <div
-                onClick={() => navigate(`/property/${id}/gallery`)}
+                onClick={() => navigate(`/product/${id}/gallery`)}
                 className={`${cl.threeImage} ${cl.threeFirst}`}
                 key={`${images[2]}--gallery`}
               >
@@ -108,7 +108,7 @@ export const ImageGallery = ({ images, id, video }) => {
                 />
               </div>
               <div
-                onClick={() => navigate(`/property/${id}/gallery`)}
+                onClick={() => navigate(`/product/${id}/gallery`)}
                 className={`${cl.threeImage} ${cl.threeSeconde}`}
                 key={`${images[3]}--gallery`}
               >
@@ -124,7 +124,7 @@ export const ImageGallery = ({ images, id, video }) => {
                 if (index > 0)
                   return (
                     <div
-                      onClick={() => navigate(`/property/${id}/gallery`)}
+                      onClick={() => navigate(`/product/${id}/gallery`)}
                       className={cl.fourImage}
                       key={`${image}-${index}-gallery`}
                     >
@@ -143,7 +143,7 @@ export const ImageGallery = ({ images, id, video }) => {
                   return (
                     <div
                       className={cl.fourImage}
-                      onClick={() => navigate(`/property/${id}/gallery`)}
+                      onClick={() => navigate(`/product/${id}/gallery`)}
                       key={`${image}-${index}-gallery`}
                     >
                       <img
@@ -155,7 +155,7 @@ export const ImageGallery = ({ images, id, video }) => {
               })}
               {/* Add the overlay after the images */}
               <div
-                onClick={() => navigate(`/property/${id}/gallery`)}
+                onClick={() => navigate(`/product/${id}/gallery`)}
                 className={cl.overlay}
               >
                 +{images?.length - 5}

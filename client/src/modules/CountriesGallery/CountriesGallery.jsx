@@ -5,7 +5,7 @@ import "swiper/css/pagination";
 import cl from "./CountriesGallery.module.css";
 import { Controller, Pagination } from "swiper/modules";
 import { GalleryItem } from "../../components/UI/GalleryItem/GalleryItem";
-import PropertyService from "../../service/PropertyService";
+import ProductService from "../../service/ProductService";
 import { Icon } from "../../components/UI/Icon/Icon.jsx";
 import { useNavigate } from "react-router-dom";
 
@@ -18,7 +18,7 @@ export const CountriesGallery = () => {
   const navigate = useNavigate();
 
   const loadData = async () => {
-    const response = await PropertyService.getCourses();
+    const response = await ProductService.getCourses();
     setItems(response?.data);
   };
 
@@ -49,7 +49,7 @@ export const CountriesGallery = () => {
         <div
           className={cl.small}
           onClick={() => {
-            navigate(`/property/${items[selected - 1]?._id }`);
+            navigate(`/product/${items[selected - 1]?._id }`);
           }}
           style={{
             background: `url(${
@@ -77,7 +77,7 @@ export const CountriesGallery = () => {
             }`,
           }}
           onClick={() => {
-            navigate(`/property/${items[selected]?._id }`);
+            navigate(`/product/${items[selected]?._id }`);
           }}
         >
           <div className={cl.city}>
@@ -100,7 +100,7 @@ export const CountriesGallery = () => {
             }`,
           }}
           onClick={() => {
-            navigate(`/property/${items[selected + 1]?._id }`);
+            navigate(`/product/${items[selected + 1]?._id }`);
           }}
         >
           <div className={cl.city}>
@@ -131,7 +131,7 @@ export const CountriesGallery = () => {
                 })`,
               }}
               onClick={() => {
-                navigate(`/property/${items[selected + 1]?._id }`);
+                navigate(`/product/${items[selected + 1]?._id }`);
               }}
             >
               <div className={cl.cardTop}>

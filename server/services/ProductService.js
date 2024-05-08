@@ -1,13 +1,13 @@
 import models from "../models/index.js";
 import { TGBot } from "../index.js";
 
-class PropertyService {
+class ProductService {
   async getAll() {
     try {
-      const properties = await models.Property.find({
+      const properties = await models.Product.find({
         isSold: false,
         isBooked: false,
-        directions: "Менторы",
+        type: "Менторы",
       });
       return { status: 200, data: properties };
     } catch (e) {
@@ -39,14 +39,25 @@ class PropertyService {
     }
   }
 
+  async getAuthor(id) {
+    try {
+      if (!id) return { status: 400, data: "Id not specified", id };
+      const developer = await models.Author.findById(id);
+      if (!developer) return { status: 404, data: "Author not found" };
+      return { status: 200, data: developer };
+    } catch (e) {
+      return { status: 500, data: e };
+    }
+  }
+
   async getById(id) {
     try {
       if (!id) return { status: 400, data: "Id not specified", id };
-      const property = await models.Property.findById({
+      const product = await models.Product.findById({
         _id: id,
       });
-      if (!property) return { status: 404, data: "Property not found" };
-      return { status: 200, data: property };
+      if (!product) return { status: 404, data: "Product not found" };
+      return { status: 200, data: product };
     } catch (e) {
       console.log(e);
       return { status: 500, data: e };
@@ -59,8 +70,8 @@ class PropertyService {
     const now = new Date();
     if (main == "true") {
       console.log("main");
-      const properties = await models.Property.find({
-        directions: "Курсы",
+      const properties = await models.Product.find({
+        type: "Courses",
         onMainPage: true,
       })
         .skip((page - 1) * limit)
@@ -68,8 +79,8 @@ class PropertyService {
       return { status: 200, data: properties };
     }
     console.log("main");
-    const properties = await models.Property.find({
-      directions: "Курсы"
+    const properties = await models.Product.find({
+      type: "Courses"
     })
       .skip((page - 1) * limit)
       .limit(limit);
@@ -79,8 +90,8 @@ class PropertyService {
   async getAllAuctions(page = 1, limit = 10, main) {
     const now = new Date();
     if (main == "true") {
-      const properties = await models.Property.find({
-        directions: "Книги",
+      const properties = await models.Product.find({
+        type: "Books",
         onMainPage: true,
       })
         .sort({ timer: 1 })
@@ -89,8 +100,8 @@ class PropertyService {
       return { status: 200, data: properties };
     }
 
-    const properties = await models.Property.find({
-      directions: "Книги",
+    const properties = await models.Product.find({
+      type: "Books",
     })
       .sort({ timer: 1 })
       .skip((page - 1) * limit)
@@ -101,7 +112,7 @@ class PropertyService {
   async getAllBusinesses(page = 1, limit = 5, main) {
     const now = new Date();
     if (main == "true") {
-      const properties = await models.Property.find({
+      const properties = await models.Product.find({
         saleType: "bussiness",
         isSold: false,
         isBooked: false,
@@ -118,7 +129,7 @@ class PropertyService {
         .limit(limit);
       return { status: 200, data: properties };
     }
-    const properties = await models.Property.find({
+    const properties = await models.Product.find({
       saleType: "bussiness",
       isSold: false,
       isBooked: false,
@@ -138,7 +149,7 @@ class PropertyService {
   async getAllInvestOffers(page = 1, limit = 5, main) {
     const now = new Date();
     if (main == "true") {
-      const properties = await models.Property.find({
+      const properties = await models.Product.find({
         saleType: "investOffer",
         isSold: false,
         isBooked: false,
@@ -155,7 +166,7 @@ class PropertyService {
         .limit(limit);
       return { status: 200, data: properties };
     }
-    const properties = await models.Property.find({
+    const properties = await models.Product.find({
       saleType: "investOffer",
       isSold: false,
       isBooked: false,
@@ -175,7 +186,7 @@ class PropertyService {
   async getFilteredProperties(filters, currentSort, page = 1, limit = 12) {
     try {
       const {
-        directions,
+        type,
         price,
       } = filters;
 
@@ -195,8 +206,8 @@ class PropertyService {
         : [0, 0];
 
       const directionConditions =
-        directions?.length > 0
-          ? [{ directions: { $in: directions } }]
+        type?.length > 0
+          ? [{ type: { $in: type } }]
           : [];
 
       const priceConditions =
@@ -214,8 +225,8 @@ class PropertyService {
         ...filterConditions
       };
 
-      const totalProperties = await models.Property.find(finalFilterConditions);
-      const properties = await models.Property.find(finalFilterConditions)
+      const totalProperties = await models.Product.find(finalFilterConditions);
+      const properties = await models.Product.find(finalFilterConditions)
         .sort(sortCriteria)
         .skip((page - 1) * limit)
         .limit(limit);
@@ -255,8 +266,8 @@ class PropertyService {
         sortCriteria = { roi: -1 };
       }
 
-      const totalProperties = await models.Property.find(query);
-      const properties = await models.Property.find(query)
+      const totalProperties = await models.Product.find(query);
+      const properties = await models.Product.find(query)
         .sort(sortCriteria)
         .skip((page - 1) * limit)
         .limit(limit);
@@ -269,7 +280,7 @@ class PropertyService {
 
   async getCountProperties(filters) {
     try {
-      const { directions, isCompleted, price } =
+      const { type, isCompleted, price } =
         filters;
 
       const [minPrice, maxPrice] = price
@@ -277,15 +288,15 @@ class PropertyService {
         : [0, 0];
 
       const directionConditions =
-        directions.length > 0
-          ? [{ directions: { $in: directions } }]
+        type.length > 0
+          ? [{ type: { $in: type } }]
           : [];
 
       const priceConditions =
         price.length > 0 ? [{ price: { $gte: minPrice, $lte: maxPrice } }] : [];
 
 
-      const maxPriceProperty = await models.Property.findOne({})
+      const maxPriceProduct = await models.Product.findOne({})
         .sort({ price: -1 })
         .select("price")
         .exec();
@@ -294,18 +305,18 @@ class PropertyService {
       const query = [];
 
       const countPromises = [
-        models.Property.countDocuments(query),
-        models.Property.countDocuments({
+        models.Product.countDocuments(query),
+        models.Product.countDocuments({
           $and: [
             ...query,
-            { directions: "Книги" },
+            { type: "Books" },
             ...priceConditions,
           ],
         }),
-        models.Property.countDocuments({
+        models.Product.countDocuments({
           $and: [
             ...query,
-            { directions: "Курсы" },
+            { type: "Courses" },
             ...priceConditions,
           ],
         })
@@ -317,7 +328,7 @@ class PropertyService {
       ] = await Promise.all(countPromises);
       return {
         status: 200,
-        maxPrice: maxPriceProperty.price,
+        maxPrice: maxPriceProduct.price,
         count: {
           total, 
           books,
@@ -329,18 +340,18 @@ class PropertyService {
       return { status: 500, data: e };
     }
   }
-  async contact(userID, propertyId) {
+  async contact(userID, productId) {
     try {
       const newContact = await models.Contact.create({
         user: userID,
-        property: propertyId,
+        product: productId,
       });
 
       try {
         console.log("sending tg notification");
         await TGBot.sendMessage(
           process.env.TG_CHAT_ID,
-          `Новое уведомление! Лот: ${propertyId}`
+          `Новое уведомление! Лот: ${productId}`
         );
       } catch (e) {
         console.log("error sending tg notification");
@@ -356,4 +367,4 @@ class PropertyService {
   }
 }
 
-export default new PropertyService();
+export default new ProductService();

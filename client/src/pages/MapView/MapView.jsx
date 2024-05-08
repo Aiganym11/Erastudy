@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { YMaps, Map, Placemark, Clusterer } from "@pbe/react-yandex-maps";
 import { Button } from "../../components/UI/Button/Button";
 import cl from "./MapView.module.css";
-import PropertyService from "../../service/PropertyService";
+import ProductService from "../../service/ProductService";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Icon } from "../../components/UI/Icon/Icon";
-import { PropertyCard } from "../../components/UI/PropertyCard/PropertyCard";
+import { ProductCard } from "../../components/UI/ProductCard/ProductCard";
 import { useTranslation } from "react-i18next";
 import { Modal } from "../../components/UI/Modal/Modal.jsx";
 import RangeSlider from "react-range-slider-input";
@@ -51,14 +51,14 @@ export const MapView = () => {
         text: "Книги",
         value: null,
         isChecked: false,
-        name: "residentialProperty",
+        name: "residentialProduct",
       },
       {
         id: 2,
         text: "Менторы",
         value: null,
         isChecked: false,
-        name: "commercialProperty",
+        name: "commercialProduct",
       },
       {
         id: 3,
@@ -196,7 +196,7 @@ export const MapView = () => {
   };
   const loadData = async () => {
     if (!isFilterEmpty()) {
-      const req = await PropertyService.getFilteredProperties(
+      const req = await ProductService.getFilteredProperties(
         filters,
         currentSort,
         page,
@@ -209,7 +209,7 @@ export const MapView = () => {
       setTotalPages(Math.ceil(req.headers["x-total-count"] / 12));
       setNumberOfProperties(req.headers["x-total-count"]);
     } else {
-      const req = await PropertyService.getAllProperties(page, 12, currentSort);
+      const req = await ProductService.getAllProperties(page, 12, currentSort);
       setFilteredProperties(req.data);
       setTotalPages(Math.ceil(req.headers["x-total-count"] / 12));
       setNumberOfProperties(req.headers["x-total-count"]);
@@ -219,7 +219,7 @@ export const MapView = () => {
 
   const getCoords = async () => {
     if (location.state) {
-      const response = await PropertyService.getProperty(location.state);
+      const response = await ProductService.getProduct(location.state);
       return [response.data.coords.lat, response.data.coords.lng];
     }
     return [43.2263647, 76.9501065];
@@ -244,21 +244,21 @@ export const MapView = () => {
         return str;
       }),
     }));
-    const propertiesCount = await PropertyService.getCountProperties(filters);
+    const propertiesCount = await ProductService.getCountProperties(filters);
     setProperties((prevProperties) => ({
       ...prevProperties,
       propertyType: [
         {
           ...prevProperties.propertyType[0],
-          value: propertiesCount?.count.residentialProperty,
+          value: propertiesCount?.count.residentialProduct,
         },
         {
           ...prevProperties.propertyType[1],
-          value: propertiesCount?.count.commercialProperty,
+          value: propertiesCount?.count.commercialProduct,
         },
         {
           ...prevProperties.propertyType[2],
-          value: propertiesCount?.count.landProperty,
+          value: propertiesCount?.count.landProduct,
         },
       ],
       strategy: [
@@ -289,7 +289,7 @@ export const MapView = () => {
   };
   const loadCities = async () => {
     try {
-      const city = await PropertyService.getCities();
+      const city = await ProductService.getCities();
       setCities(city.data);
     } catch (error) {
       console.error("Error fetching cities:", error);
@@ -373,7 +373,7 @@ export const MapView = () => {
                 key={index}
                 defaultGeometry={[property?.coords?.lat, property?.coords?.lng]}
                 onClick={(e) => {
-                  navigate(`/property/${property._id}`);
+                  navigate(`/product/${property._id}`);
                 }}
                 options={{
                   hasBalloon: true,
@@ -497,10 +497,10 @@ export const MapView = () => {
                 </div>
                 <div className={cl.propertyCards}>
                   {items?.map((item) => (
-                    <PropertyCard
+                    <ProductCard
                       key={item._id}
                       item={item}
-                      className={cl.cardProperty}
+                      className={cl.cardProduct}
                     />
                   ))}
                 </div>

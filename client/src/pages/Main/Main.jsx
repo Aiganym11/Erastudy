@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { Filters } from "../../modules/Filters/Filters";
 import { Button } from "../../components/UI/Button/Button";
 import { Icon } from "../../components/UI/Icon/Icon";
-import { PropertyCard } from "../../components/UI/PropertyCard/PropertyCard";
+import { ProductCard } from "../../components/UI/ProductCard/ProductCard";
 import { GalleryItem } from "../../components/UI/GalleryItem/GalleryItem";
 import { CategoryCard } from "../../components/UI/CategoryCard/CategoryCard";
 import city1 from "../../assets/images/city.jpeg";
@@ -15,7 +15,7 @@ import categoryImage3 from "../../assets/images/category3.jpg";
 import categoryImage4 from "../../assets/images/category4.jpg";
 import categoryImage5 from "../../assets/images/category5.jpg";
 import deviderImg from "../../assets/images/devider1.jpg";
-import PropertyService from "../../service/PropertyService";
+import ProductService from "../../service/ProductService";
 import cl from "./Main.module.css";
 import { CitiesGallery } from "../../modules/CitiesGallery/CitiesGallery";
 import { CountriesGallery } from "../../modules/CountriesGallery/CountriesGallery.jsx";
@@ -35,10 +35,10 @@ export const Main = () => {
   const settings = useSelector((state) => state.settings);
 
   const loadData = async () => {
-    const sales = await PropertyService.getCourses(1, 5, true);
-    const auctions = await PropertyService.getBooks(1, 5, true);
-    const business = await PropertyService.getBusinesses(1, 5, true);
-    const invest = await PropertyService.getInvestOffers(1, 5, true);
+    const sales = await ProductService.getCourses(1, 5, true);
+    const auctions = await ProductService.getBooks(1, 5, true);
+    const business = await ProductService.getBusinesses(1, 5, true);
+    const invest = await ProductService.getInvestOffers(1, 5, true);
 
     console.log(11, sales)
 
@@ -204,10 +204,10 @@ export const Main = () => {
                 <div className={cl.items}>
                   {isLoading
                     ? Array.from({ length: 5 }).map((_, i) => (
-                        <PropertyCard key={`${i} auction skeleton`} />
+                        <ProductCard key={`${i} auction skeleton`} />
                       ))
                     : sales?.map((item) => (
-                        <PropertyCard item={item} key={`${item._id} sales`} />
+                        <ProductCard item={item} key={`${item._id} sales`} />
                       ))}
                 </div>
               </div>
@@ -230,10 +230,10 @@ export const Main = () => {
                 <div className={cl.items}>
                   {isLoading
                     ? Array.from({ length: 5 }).map((_, i) => (
-                        <PropertyCard key={`${i} auction skeleton`} />
+                        <ProductCard key={`${i} auction skeleton`} />
                       ))
                     : auctions?.map((item) => (
-                        <PropertyCard item={item} key={`${item._id} sales`} />
+                        <ProductCard item={item} key={`${item._id} sales`} />
                       ))}
                 </div>
               </div>
@@ -256,10 +256,10 @@ export const Main = () => {
                 <div className={cl.items}>
                   {isLoading
                     ? Array.from({ length: 5 }).map((_, i) => (
-                        <PropertyCard key={`${i} auction skeleton`} />
+                        <ProductCard key={`${i} auction skeleton`} />
                       ))
                     : business?.map((item) => (
-                        <PropertyCard item={item} key={`${item._id} sales`} />
+                        <ProductCard item={item} key={`${item._id} sales`} />
                       ))}
                 </div>
               </div>
@@ -289,10 +289,10 @@ export const Main = () => {
                 <div className={cl.items}>
                   {isLoading
                     ? Array.from({ length: 5 }).map((_, i) => (
-                        <PropertyCard key={`${i} auction skeleton`} />
+                        <ProductCard key={`${i} auction skeleton`} />
                       ))
                     : invest?.map((item) => (
-                        <PropertyCard item={item} key={`${item._id} sales`} />
+                        <ProductCard item={item} key={`${item._id} sales`} />
                       ))}
                 </div>
               </div>

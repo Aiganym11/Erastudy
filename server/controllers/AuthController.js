@@ -153,10 +153,10 @@ class AuthController {
 
   async addFavorites(req, res) {
     try {
-      const { property } = req.body;
+      const { product } = req.body;
       const response = await AuthService.addToFavorite(
         req.user?.data?._id,
-        property
+        product
       );
       return res.status(response.status).json(response);
     } catch (e) {
@@ -167,10 +167,10 @@ class AuthController {
 
   async removeFavorites(req, res) {
     try {
-      const { property } = req.body;
+      const { product } = req.body;
       const response = await AuthService.removeFromFavorite(
         req.user?.data?._id,
-        property
+        product
       );
       return res.status(response.status).json(response);
     } catch (e) {

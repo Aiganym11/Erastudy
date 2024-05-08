@@ -1,7 +1,7 @@
 import React from "react";
-import cl from "./PropertyCard.module.css";
+import cl from "./ProductCard.module.css";
 import propertyImage from "../../../assets/images/property.png";
-import { Icon } from "../Icon/Icon";
+import { Icon } from "../Icon/Icon.jsx";
 import { maskToPrice } from "../../../utils/mask.js";
 import { useTimer } from "react-timer-hook";
 import { useTranslation } from "react-i18next";
@@ -9,9 +9,9 @@ import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import PropertyService from "../../../service/PropertyService";
+import ProductService from "../../../service/ProductService";
 
-export const PropertyCard = ({ item, type, customWidth, className }) => {
+export const ProductCard = ({ item, type, customWidth, className }) => {
   const time = item?.timer ? new Date(item?.timer) : new Date();
   const user = useSelector((state) => state.auth);
   const navigate = useNavigate();
@@ -24,9 +24,9 @@ export const PropertyCard = ({ item, type, customWidth, className }) => {
   const handleFavorite = async (e) => {
     e.stopPropagation();
     if (user?.userData?.favorites?.items?.includes(item?._id)) {
-      await PropertyService.removeFavorite(item?._id);
+      await ProductService.removeFavorite(item?._id);
     } else {
-      await PropertyService.addFavorite(item?._id);
+      await ProductService.addFavorite(item?._id);
     }
     // reload
     window.location.reload();
@@ -155,7 +155,7 @@ export const PropertyCard = ({ item, type, customWidth, className }) => {
 
   return (
     <div
-      onClick={() => navigate(`/property/${item?._id}`)}
+      onClick={() => navigate(`/product/${item?._id}`)}
       className={`${cl.root} ${className} ${
         type == "search" ? cl.search : null
       }`}

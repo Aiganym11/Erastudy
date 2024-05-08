@@ -64,7 +64,7 @@ class PaymentService {
         invoiceID: invoiceId,
         userId: userId,
         type: type,
-        property: item,
+        product: item,
       });
 
       await payment.save();
@@ -99,7 +99,7 @@ class PaymentService {
         }
       );
       console.log(payment);
-      const property = await models.Property.findById(payment.property);
+      const product = await models.Product.findById(payment.product);
       if (response?.data?.transaction?.statusName === "CHARGE") {
         payment.success = true;
         payment.ip = response.data.transaction.ip;
@@ -117,26 +117,26 @@ class PaymentService {
         if (payment.type === ITEM_TYPE[0]) {
           const sell = await models.Sells.create({
             user: payment.user,
-            property: payment.property,
+            product: payment.product,
             payment: payment,
           });
           await sell.save();
-          property.isSold = true;
+          product.isSold = true;
         }
         if (payment.type === ITEM_TYPE[1]) {
           const booking = await models.Bookings.create({
             user: payment.user,
-            property: payment.property,
+            product: payment.product,
             payment: payment,
           });
           await booking.save();
-          property.isBooked = true;
+          product.isBooked = true;
         }
         if (payment.type === ITEM_TYPE[2]) {
-          const file = property.file;
+          const file = product.file;
           const newFileAccess = await models.File.create({
             user: payment.user,
-            property: payment.property,
+            product: payment.product,
             payment: payment,
             file: file,
           });
@@ -145,12 +145,12 @@ class PaymentService {
         if (payment.type === ITEM_TYPE[3]) {
           const auction = await models.Auction.create({
             user: payment.user,
-            property: payment.property,
+            product: payment.product,
             payment: payment,
           });
           await auction.save();
         }
-        await property.save();
+        await product.save();
 
         try {
           console.log("sending tg notification");
@@ -175,15 +175,15 @@ class PaymentService {
     try {
       const auctionsData = await models.Auction.find({})
         .populate("user")
-        .populate("property")
+        .populate("product")
         .exec();
       const bookingData = await models.Bookings.find({})
         .populate("user")
-        .populate("property")
+        .populate("product")
         .exec();
       const sellsData = await models.Sells.find({})
         .populate("user")
-        .populate("property")
+        .populate("product")
         .exec();
       const analyticsData = await models.File.find({});
       const feedbackData = await models.Contact.find({});
@@ -252,7 +252,7 @@ class PaymentService {
                 </td>
                 <td>${data?.user.phone}</td>
                 <td>
-                  <a href="http://admin.inlot.kz/admin/resources/Property/records/${data?.property?._id}/show">${data?.property?.title}</a>
+                  <a href="http://admin.inlot.kz/admin/resources/Product/records/${data?.product?._id}/show">${data?.product?.title}</a>
                 </td>
                 <td>${data?.createdAt}</td>
               </tr>
@@ -280,7 +280,7 @@ class PaymentService {
                 </td>
                 <td>${data?.user.phone}</td>
                 <td>
-                  <a href="http://admin.inlot.kz/admin/resources/Property/records/${data?.property?._id}/show">${data?.property?.title}</a>
+                  <a href="http://admin.inlot.kz/admin/resources/Product/records/${data?.product?._id}/show">${data?.product?.title}</a>
                 </td>
                 <td>${data?.createdAt}</td>
               </tr>
@@ -309,7 +309,7 @@ class PaymentService {
                 </td>
                 <td>${data?.user.phone}</td>
                 <td>
-                  <a href="http://admin.inlot.kz/admin/resources/Property/records/${data?.property?._id}/show">${data?.property?.title}</a>
+                  <a href="http://admin.inlot.kz/admin/resources/Product/records/${data?.product?._id}/show">${data?.product?.title}</a>
                 </td>
                 <td>${data?.createdAt}</td>
               </tr>
