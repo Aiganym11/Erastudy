@@ -335,7 +335,7 @@
   .leftTopMid {
     line-height: 32px;
   }
-  .propertyCard {
+  .productCard {
     width: 32% !important;
   }
   .button {
@@ -395,7 +395,7 @@
     justify-content: flex-start;
     align-items: flex-start;
   }
-  .propertyCard {
+  .productCard {
     width: 100% !important;
   }
   .items {

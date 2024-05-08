@@ -5,9 +5,9 @@ export const ITEM_TYPE = ["Покупка", "Бронь", "file", "auction"];
 const schema = new mongoose.Schema({
   user: { type: mongoose.Schema.ObjectId, ref: "User", required: true },
   type: { type: String, enum: ITEM_TYPE, required: true },
-  property: {
+  product: {
     type: mongoose.Schema.ObjectId,
-    ref: "Property",
+    ref: "Product",
     required: false,
   },
   file: { type: String, required: false },

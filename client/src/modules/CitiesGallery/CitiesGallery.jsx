@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import cl from "./CitiesGallery.module.css";
-import PropertyService from "../../service/PropertyService";
+import ProductService from "../../service/ProductService";
 import { Icon } from "../../components/UI/Icon/Icon.jsx";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -12,7 +12,7 @@ export const CitiesGallery = () => {
   const navigate = useNavigate();
 
   const loadData = async () => {
-    const response = await PropertyService.getBooks();
+    const response = await ProductService.getBooks();
     setItems(response?.data);
 
     console.log("Books ", items)
@@ -46,7 +46,7 @@ export const CitiesGallery = () => {
         <div
           className={cl.small}
           onClick={() => {
-            navigate(`/property/${items[selected - 1]?._id }`);
+            navigate(`/product/${items[selected - 1]?._id }`);
           }}
           style={{
             background: `url(${
@@ -74,7 +74,7 @@ export const CitiesGallery = () => {
             }`,
           }}
           onClick={() => {
-            navigate(`/property/${items[selected]?._id }`);
+            navigate(`/product/${items[selected]?._id }`);
           }}
         >
           <div className={cl.city}>
@@ -97,7 +97,7 @@ export const CitiesGallery = () => {
             }`,
           }}
           onClick={() => {
-            navigate(`/property/${items[selected + 1]?._id }`);
+            navigate(`/product/${items[selected + 1]?._id }`);
           }}
         >
           <div className={cl.city}>
@@ -127,7 +127,7 @@ export const CitiesGallery = () => {
                 })`,
               }}
               onClick={() => {
-                navigate(`/property/${items[selected]?._id }`);
+                navigate(`/product/${items[selected]?._id }`);
               }}
             >
               <div className={cl.cardTop}>

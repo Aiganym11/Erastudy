@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { PropertyCard } from "../../components/UI/PropertyCard/PropertyCard";
+import { ProductCard } from "../../components/UI/ProductCard/ProductCard";
 import { useSelector } from "react-redux";
-import PropertyService from "../../service/PropertyService";
+import ProductService from "../../service/ProductService";
 import cl from "./ProfileFavorites.module.css";
 import { Icon } from "../../components/UI/Icon/Icon.jsx";
 import { Pagination } from "../../components/UI/Pagination/Pagination.jsx";
@@ -31,7 +31,7 @@ export const ProfileFavorites = ({ activeTab, isCLoading }) => {
     setItems(
       await Promise.all(
         favs.map(async (item) => {
-          const res = await PropertyService.getProperty(item);
+          const res = await ProductService.getProduct(item);
           return res.data;
         })
       )
@@ -61,7 +61,7 @@ export const ProfileFavorites = ({ activeTab, isCLoading }) => {
         <div className={cl.items}>
           {isLoading ? (
             Array.from({ length: 6 }).map((_, index) => (
-              <PropertyCard
+              <ProductCard
                 className={cl.card}
                 key={index}
                 customWidth={275}
@@ -72,7 +72,7 @@ export const ProfileFavorites = ({ activeTab, isCLoading }) => {
             <>
               {items.slice(startIndex, endIndex).map((item) => (
                 <div className={cl.item}>
-                  <PropertyCard
+                  <ProductCard
                     key={item._id}
                     className={`${cl.card}`}
                     timer={false}

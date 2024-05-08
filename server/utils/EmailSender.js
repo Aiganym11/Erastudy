@@ -1,5 +1,3 @@
-// const nodemailer = require('nodemailer');
-// rewrite to esm syntax
 import nodemailer from "nodemailer";
 
 class EmailSender {
@@ -30,5 +28,4 @@ class EmailSender {
   }
 }
 
-// module.exports = EmailSender;
 export default EmailSender;

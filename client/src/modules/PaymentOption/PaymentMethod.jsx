@@ -3,7 +3,7 @@ import { Icon } from "../../components/UI/Icon/Icon";
 import { Button } from "../../components/UI/Button/Button";
 import cl from "./PaymentMethod.module.css";
 import PaymentService from "../../service/PaymentService.js";
-import PropertyService from "../../service/PropertyService";
+import ProductService from "../../service/ProductService";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
@@ -12,14 +12,14 @@ export const ITEM_TYPE = ["Покупка", "Бронь", "auction"];
 export const PaymentMethod = ({ id, setCurrentStep, selectedType, isFile }) => {
   const { t } = useTranslation();
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(null);
-  const [property, setProperty] = useState(null);
+  const [property, setProduct] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
   const loadData = async () => {
     try {
-      const req = await PropertyService.getProperty(id);
-      setProperty(req?.data);
+      const req = await ProductService.getProduct(id);
+      setProduct(req?.data);
       setIsLoading(false);
     } catch (e) {
       setIsLoading(true);

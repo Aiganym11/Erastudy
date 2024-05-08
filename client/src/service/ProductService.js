@@ -1,9 +1,9 @@
 import { $host, $authHost } from "./index";
 
-class PropertyController {
+class ProductController {
   async getAll() {
     try {
-      const req = await $host.get("property/");
+      const req = await $host.get("product/");
       return req.data;
     } catch (e) {
       return null;
@@ -12,7 +12,7 @@ class PropertyController {
 
   async getCourses(page = 1, limit = 5, main = false) {
     try {
-      const req = await $host.get("property/sales", {
+      const req = await $host.get("product/sales", {
         params: {
           page,
           limit,
@@ -27,7 +27,7 @@ class PropertyController {
 
   async getBooks(page = 1, limit = 5, main = false) {
     try {
-      const req = await $host.get("property/auctions", {
+      const req = await $host.get("product/auctions", {
         params: {
           page: page,
           limit: limit,
@@ -42,7 +42,7 @@ class PropertyController {
 
   async getBestBooks() {
     try {
-      const req = await $host.get("property/books", {
+      const req = await $host.get("product/books", {
         params: {
           page: 1,
           limit: 5,
@@ -56,7 +56,7 @@ class PropertyController {
 
   async getBusinesses(page = 1, limit = 5, main = false) {
     try {
-      const req = await $host.get("property/businesses", {
+      const req = await $host.get("product/businesses", {
         params: {
           page: page,
           limit: limit,
@@ -71,7 +71,7 @@ class PropertyController {
 
   async getInvestOffers(page = 1, limit = 5, main = false) {
     try {
-      const req = await $host.get("property/investOffers", {
+      const req = await $host.get("product/investOffers", {
         params: {
           page: page,
           limit: limit,
@@ -84,10 +84,10 @@ class PropertyController {
     }
   }
 
-  async getProperty(id) {
+  async getProduct(id) {
     try {
       console.log(54, id)
-      const req = await $host.get(`property/id/${id}`);
+      const req = await $host.get(`product/id/${id}`);
       return req.data;
     } catch (e) {
       return null;
@@ -96,7 +96,7 @@ class PropertyController {
 
   async getDeveloper(id) {
     try {
-      const req = await $host.get(`property/developer/${id}`);
+      const req = await $host.get(`product/author/${id}`);
       return req.data;
     } catch (e) {
       return null;
@@ -106,7 +106,7 @@ class PropertyController {
   async getFilteredProperties(filters, currentSort, page, limit) {
     try {
       const req = await $host.post(
-        `property/getFilters?page=${page}&limit=${limit}`,
+        `product/getFilters?page=${page}&limit=${limit}`,
         {
           filters,
           currentSort,
@@ -121,7 +121,7 @@ class PropertyController {
   async getAllProperties(page, limit, currentSort) {
     try {
       const req = await $host.post(
-        `property/getAllProperties?page=${page}&limit=${limit}`,
+        `product/getAllProperties?page=${page}&limit=${limit}`,
         currentSort
       );
       return req;
@@ -132,17 +132,17 @@ class PropertyController {
 
   async getCountProperties(filters) {
     try {
-      const req = await $host.post("property/getCountProperties", filters);
+      const req = await $host.post("product/getCountProperties", filters);
       return req.data;
     } catch (e) {
       return null;
     }
   }
 
-  async removeFavorite(property) {
+  async removeFavorite(product) {
     try {
       const req = await $authHost.post("auth/remove-favorite", {
-        property,
+        product,
       });
       return req;
     } catch (e) {
@@ -150,10 +150,10 @@ class PropertyController {
     }
   }
 
-  async addFavorite(property) {
+  async addFavorite(product) {
     try {
       const req = await $authHost.post("auth/add-favorite", {
-        property,
+        product,
       });
       return req;
     } catch (e) {
@@ -163,7 +163,7 @@ class PropertyController {
 
   async getBuyHistory() {
     try {
-      const req = await $authHost.get("property/getBought");
+      const req = await $authHost.get("product/getBought");
       if (req.status === 200) {
         return req.data;
       }
@@ -175,7 +175,7 @@ class PropertyController {
 
   async cotact(id) {
     try {
-      const req = await $authHost.post("property/contact", { id });
+      const req = await $authHost.post("product/contact", { id });
       if (req.status === 200) {
         return req.data;
       }
@@ -187,4 +187,4 @@ class PropertyController {
 
 }
 
-export default new PropertyController();
+export default new ProductController();

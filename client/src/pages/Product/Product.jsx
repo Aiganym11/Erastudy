@@ -3,23 +3,23 @@ import { useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-import PropertyService from "../../service/PropertyService";
-import cl from "./Property.module.css";
+import ProductService from "../../service/ProductService";
+import cl from "./Product.module.css";
 
 import Skeleton from "react-loading-skeleton";
-import { ImageGallery } from "../../modules/ImageGallery/ImageGallery";
-import { maskToPrice } from "../../utils/mask";
-import { Button } from "../../components/UI/Button/Button";
+import { ImageGallery } from "../../modules/ImageGallery/ImageGallery.jsx";
+import { maskToPrice } from "../../utils/mask.js";
+import { Button } from "../../components/UI/Button/Button.jsx";
 import { Icon } from "../../components/UI/Icon/Icon.jsx";
 import { QuestionBlock } from "../../components/UI/QuestionBlock/QuestionBlock.jsx";
 import { Tooltip } from "../../components/UI/Tooltip/Tooltip.jsx";
 import { Breadcrumbs } from "../../components/UI/Breadcrumbs/Breadcrumbs.jsx";
 
-export const Property = () => {
+export const Product = () => {
   const { t, i18n } = useTranslation();
   const user = useSelector((state) => state.auth);
-  const [property, setProperty] = useState(null);
-  const [developer, setDeveloper] = useState(null);
+  const [property, setProduct] = useState(null);
+  const [author, setAuthor] = useState(null);
   const [activeButton, setActiveButton] = useState(0);
   const [questionData, setQuestionData] = useState([]);
   const [courseRating, setCourseRating] = useState(0);
@@ -60,14 +60,12 @@ export const Property = () => {
   ));
 
   const handleReserveButtonClick = () => {
-    if (
-      user.userData?.iin === undefined ||
-      user.userData?.address === undefined ||
-      user.userData?.numberOfDocument === undefined
-    ) {
-      return navigate(`/editProfile/${property?._id}`);
+    console.log("Product page. Product Id: ", property?._id)
+    if (property?.type === "Books") {
+      window.open(property.book_url, '_blank');
+    } else {
+      navigate(`/payment/${property?._id}`);
     }
-    navigate(`/payment/${property?._id}`);
   };
 
   const favoriteHandler = async () => {
@@ -76,31 +74,29 @@ export const Property = () => {
     }
 
     if (user?.userData?.favorites?.items?.includes(id)) {
-      await PropertyService.removeFavorite(id);
+      await ProductService.removeFavorite(id);
     } else {
-      await PropertyService.addFavorite(id);
+      await ProductService.addFavorite(id);
     }
     window.location.reload();
   };
 
   const loadData = async () => {
-    console.log(53, id)
-    const property = await PropertyService.getProperty(id).then(async (res) => {
-      console.log(55, res)
+    console.log("Product Page. Product Id: ", id)
+    const property = await ProductService.getProduct(id).then(async (res) => {
 
-      console.log(17, res?.data?.developer)
-      const developer = await PropertyService.getDeveloper(
-        res?.data?.developer || res?.data?.author
+      console.log("Product Page. Author: ", res?.data?.author)
+      const author = await ProductService.getDeveloper(
+        res?.data?.author || res?.data?.author
       );
-      console.log(16, developer)
-      setDeveloper(developer.data);
+      setAuthor(author.data);
       if(res?.data?.rating){
         setCourseRating(res?.data?.rating);
       }
       return res;
     });
 
-    setProperty(property.data);
+    setProduct(property.data);
     const propertyData = [
       property?.data?.description
     ];
@@ -180,10 +176,8 @@ export const Property = () => {
                   <Icon name='emblem' />
                 </div>
                 <div className={cl.emblemText}>
-                  {developer ? (
-                    developer.title[
-                      i18n.language == "en" ? 0 : i18n.language == "ru" ? 1 : 2
-                    ]
+                  {author ? (
+                    author.firstName + ' ' + author.lastName
                   ) : (
                     <Skeleton width={100} />
                   )}
@@ -212,9 +206,10 @@ export const Property = () => {
                 onClick={handleReserveButtonClick}
                 type='fill'
               >
-                {property?.saleType === "auccion"
-                  ? t("property.reserveAuccion")
-                  : t("property.reserve")}
+                {
+                property?.type === "Books"
+                  ? "Download a book"
+                  : "Buy a course"}
               </Button>
             </div>
           </div>
@@ -234,7 +229,7 @@ export const Property = () => {
                 <div className={cl.rank}>
                   <div className={cl.rankTitle}>{t("property.rank")}</div>
                   <div className={cl.rankValue}>
-                    {developer ? developer.rating : <Skeleton width={100} />}
+                    {author ? author.rating : <Skeleton width={100} />}
                   </div>
                 </div>
                 <div className={cl.solvency}>
@@ -242,8 +237,8 @@ export const Property = () => {
                     {t("property.solvency")}
                   </div>
                   <div className={cl.solvencyValue}>
-                    {developer ? (
-                      developer.financialStability
+                    {author ? (
+                      author.financialStability
                     ) : (
                       <Skeleton width={100} />
                     )}

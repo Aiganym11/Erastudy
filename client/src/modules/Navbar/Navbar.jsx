@@ -9,7 +9,7 @@ import Cookies from "js-cookie";
 import { Modal } from "../../components/UI/Modal/Modal.jsx";
 import validate from "../../utils/validate.js";
 import LotContactFormService from "../../service/LotContactFormService.js";
-import PropertyService from "../../service/PropertyService";
+import ProductService from "../../service/ProductService";
 import presentation from "../../assets/Камила Жантемир.pdf";
 
 export const Navbar = () => {
