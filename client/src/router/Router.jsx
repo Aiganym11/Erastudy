@@ -16,6 +16,7 @@ import { Gallery } from "../pages/Gallery/Gallery";
 import { ShowMore } from "../pages/ShowMore/ShowMore";
 import { EditProfile } from "../pages/EditProfile/EditProfile.jsx";
 import { Reviews } from "../pages/Reviews/Reviews";
+import { TeachersList } from "../modules/Teacher/TeacherList.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -23,6 +24,14 @@ export const router = createBrowserRouter([
     element: (
       <PageWrapper>
         <Main />
+      </PageWrapper>
+    ),
+  },
+  {
+    path: "/teachers",
+    element: (
+      <PageWrapper>
+        <TeachersList />
       </PageWrapper>
     ),
   },
@@ -137,6 +146,14 @@ export const AuthRouter = createBrowserRouter([
     element: (
       <PageWrapper>
         <Main />
+      </PageWrapper>
+    ),
+  },
+  {
+    path: "/teachers",
+    element: (
+      <PageWrapper>
+        <TeachersList />
       </PageWrapper>
     ),
   },

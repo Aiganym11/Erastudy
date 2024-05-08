@@ -144,7 +144,7 @@ export const Navbar = () => {
             </div>
             <div className={cl.item}>
               <Link
-                to='/'
+                to='/teachers'
                 // to={presentation}
                 // download={presentation}
                 // target='_blank'
