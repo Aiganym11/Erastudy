@@ -39,6 +39,7 @@ app.use("/product", routers.ProductRouter);
 app.use("/settings", routers.SettingsRouter);
 app.use("/payment", routers.PaymentRouter);
 app.use("/lot", routers.LotContactFormRouter);
+app.use("/authors", routers.AuthorRouter);
 
 const InitTelegramBot = async () => {
   try {

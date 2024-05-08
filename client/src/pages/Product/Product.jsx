@@ -68,6 +68,10 @@ export const Product = () => {
     }
   };
 
+  const handleAuthorEmblemClick = () => {
+      navigate(`/teachers/${author?._id}`);
+  };
+
   const favoriteHandler = async () => {
     if (!user || !user?.isAuth) {
       return navigate("/login");
@@ -171,13 +175,13 @@ export const Product = () => {
                   </div>
                 </div>
               </div>
-              <div className={cl.emblem}>
+              <div className={cl.emblem}  onClick={handleAuthorEmblemClick}>
                 <div className={cl.emblemIcon}>
                   <Icon name='emblem' />
                 </div>
                 <div className={cl.emblemText}>
                   {author ? (
-                    author.firstName + ' ' + author.lastName
+                    `${author.firstName}${author.lastName ? ' ' + author.lastName : ''}`
                   ) : (
                     <Skeleton width={100} />
                   )}
