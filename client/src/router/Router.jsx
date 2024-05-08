@@ -17,6 +17,7 @@ import { ShowMore } from "../pages/ShowMore/ShowMore";
 import { EditProfile } from "../pages/EditProfile/EditProfile.jsx";
 import { Reviews } from "../pages/Reviews/Reviews";
 import { TeachersList } from "../pages/TeacherList/TeacherList.jsx";
+import { AuthorProfile } from "../pages/AuthorProfile/AuthorProfile.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -32,6 +33,14 @@ export const router = createBrowserRouter([
     element: (
       <PageWrapper>
         <TeachersList />
+      </PageWrapper>
+    ),
+  },
+  {
+    path: "/teachers/:id",
+    element: (
+      <PageWrapper>
+        <AuthorProfile />
       </PageWrapper>
     ),
   },
@@ -154,6 +163,14 @@ export const AuthRouter = createBrowserRouter([
     element: (
       <PageWrapper>
         <TeachersList />
+      </PageWrapper>
+    ),
+  },
+  {
+    path: "/teachers/:id",
+    element: (
+      <PageWrapper>
+        <AuthorProfile />
       </PageWrapper>
     ),
   },

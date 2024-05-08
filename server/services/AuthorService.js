@@ -31,6 +31,37 @@ class AuthorService {
       return { status: 500, data: e.message };
     }
   }
+
+  async getById(id) {
+    try {
+
+      const [author, courses, books] = await
+       Promise.all([
+        models.Author.findById({
+            _id: id,
+          }),
+        models.Product.find({
+            author: id,
+            type: "Courses"
+        }),
+        models.Product.find({
+            author: id,
+            type: "Books"
+        })
+       ])
+      return {
+        status: 200,
+        data: {
+          ...author.toObject(),
+          courses,
+          books
+        }
+      };
+    } catch (e) {
+      console.log(e);
+      return { status: 500, data: e.message };
+    }
+  }
 }
 
 export default new AuthorService();

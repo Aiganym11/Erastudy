@@ -17,6 +17,15 @@ class AuthorService {
     }
   }
 
+  async getById(id) {
+    try {
+      const req = await $host.get(`authors/${id}`);
+      return req.data;
+    } catch (e) {
+      return null;
+    }
+  }
+
 }
 
 export default new AuthorService();

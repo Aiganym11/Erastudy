@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import TeacherCard from '../../modules/Teacher/Teacher';
 import Pagination from '../../modules/Pagination/Pagination';
 import AuthorService from '../../service/AuthorService';
@@ -8,6 +9,8 @@ export const TeachersList = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const [searchTerm, setSearchTerm] = useState('');
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     const fetchTeachers = async () => {
@@ -30,6 +33,11 @@ export const TeachersList = () => {
     setCurrentPage(newPage);
   };
 
+  const handleTeacherClick = (id) => {
+    navigate(`/teachers/${id}`);
+  };
+  
+
   return (
     <div>
       <input
@@ -41,7 +49,7 @@ export const TeachersList = () => {
       />
       <div className="teachers-container">
       {teachers.map(teacher => (
-        <TeacherCard key={teacher.id} teacher={teacher} />
+        <TeacherCard teacher={teacher} />
       ))}
       </div>
       <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />

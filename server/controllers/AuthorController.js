@@ -7,6 +7,11 @@ class AuthorController {
     return res.status(response.status).json(response);
   }
 
+  async getById(req, res) {
+    const response = await AuthorService.getById(req.params.id);
+    return res.status(response.status).json(response);
+  }
+
 }
 
 export default new AuthorController();
