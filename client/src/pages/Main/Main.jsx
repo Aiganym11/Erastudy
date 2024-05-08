@@ -196,7 +196,7 @@ export const Main = () => {
                       {t("section2.title1")}
                     </div>
                   </div>
-                  <Link className={`${cl.more} title_md`} to='/all/sales-start'>
+                  <Link className={`${cl.more} title_md`} to='/all/courses'>
                     {t("section2.more")}
                   </Link>
                 </div>
@@ -222,7 +222,7 @@ export const Main = () => {
                       {t("section2.title2")}
                     </div>
                   </div>
-                  <Link className={`${cl.more} title_md`} to='/all/auction'>
+                  <Link className={`${cl.more} title_md`} to='/all/books'>
                     {t("section2.more")}
                   </Link>
                 </div>
