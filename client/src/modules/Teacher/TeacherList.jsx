@@ -33,9 +33,18 @@ export const TeachersList = () => {
 
   return (
     <div>
+      <input
+        type="text"
+        placeholder="Search teachers..."
+        //value={searchTerm}
+       // onChange={(e) => setSearchTerm(e.target.value)}
+        className="search-field"
+      />
+      <div className="teachers-container">
       {teachers.map(teacher => (
         <TeacherCard key={teacher.id} teacher={teacher} />
       ))}
+      </div>
       <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
     </div>
   );
