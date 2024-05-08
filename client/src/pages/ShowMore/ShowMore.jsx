@@ -28,26 +28,16 @@ export const ShowMore = () => {
   const [properties, setProperties] = useState(null);
   const [name, setName] = useState("");
   const [page, setPage] = useState(0);
+
+
   const loadBooks = async () => {
     const req = await ProductService.getBooks(10, page, false);
     console.log(req);
     setProperties(req.data);
-    setName(req.data[0]?.type);
+    setName("Books");
   };
 
-  const loadInvestOffers = async () => {
-    const req = await ProductService.getCourses(10, page, false);
-    setProperties(req.data);
-    setName(req.data[0]?.type);
-  };
-
-  const loadBusinesses = async () => {
-    const req = await ProductService.getCourses(10, page, false);
-    setProperties(req.data);
-    setName(req.data[0]?.type);
-  };
-
-  const loadSales = async () => {
+  const loadCourses = async () => {
     const req = await ProductService.getCourses(10, page, false);
     setProperties(req.data);
     setName("Courses");
@@ -58,17 +48,11 @@ export const ShowMore = () => {
       case "books":
         await loadBooks();
         break;
-      case "investment-deals":
-        await loadInvestOffers();
-        break;
-      case "business":
-        await loadBusinesses();
-        break;
       case "courses":
-        await loadSales();
+        await loadCourses();
         break;
       default:
-        await loadSales();
+        await loadCourses();
         break;
     }
     setIsLoading(false);
