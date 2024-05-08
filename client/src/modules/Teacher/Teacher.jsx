@@ -1,11 +1,14 @@
 import React from 'react';
 
 const TeacherCard = ({ teacher }) => {
+ const name = `${teacher.firstName}${teacher.lastName ? ' ' + teacher.lastName : ''}`;
+
+    
   return (
     <div className="teacher-card">
-      <img src={teacher.imageUrl} alt={teacher.name} className="teacher-image"/>
-      <h3>{teacher.name}</h3>
-      <p>{teacher.hourlyWage} per hour</p>
+      <img src={teacher.profilePicture} alt={name} className="teacher-image"/>
+      <h3>{name}</h3>
+      <p>{teacher.hourlyRate} per hour</p>
       <p>{teacher.skills.join(', ')}</p>
     </div>
   );

@@ -16,7 +16,7 @@ import { Gallery } from "../pages/Gallery/Gallery";
 import { ShowMore } from "../pages/ShowMore/ShowMore";
 import { EditProfile } from "../pages/EditProfile/EditProfile.jsx";
 import { Reviews } from "../pages/Reviews/Reviews";
-import { TeachersList } from "../modules/Teacher/TeacherList.jsx";
+import { TeachersList } from "../pages/TeacherList/TeacherList.jsx";
 
 export const router = createBrowserRouter([
   {
