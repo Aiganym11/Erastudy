@@ -24,9 +24,11 @@ export const Payment = () => {
   const navigate = useNavigate();
   const contactHandler = async () => {
     const req = await ProductController.cotact(id);
-    navigate("/");
+    //navigate("/");
   };
   const loadData = async () => {
+    console.log(55, "I am in payment page")
+    
     if (location?.state?.file === true) {
       setIsFile(true);
     }

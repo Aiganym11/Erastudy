@@ -19,7 +19,7 @@ export const Product = () => {
   const { t, i18n } = useTranslation();
   const user = useSelector((state) => state.auth);
   const [property, setProduct] = useState(null);
-  const [author, setDeveloper] = useState(null);
+  const [author, setAuthor] = useState(null);
   const [activeButton, setActiveButton] = useState(0);
   const [questionData, setQuestionData] = useState([]);
   const [courseRating, setCourseRating] = useState(0);
@@ -60,14 +60,12 @@ export const Product = () => {
   ));
 
   const handleReserveButtonClick = () => {
-    if (
-      user.userData?.iin === undefined ||
-      user.userData?.address === undefined ||
-      user.userData?.numberOfDocument === undefined
-    ) {
-      return navigate(`/editProfile/${property?._id}`);
+    console.log("Product page. Product Id: ", property?._id)
+    if (property?.type === "Books") {
+      window.open(property.book_url, '_blank');
+    } else {
+      navigate(`/payment/${property?._id}`);
     }
-    navigate(`/payment/${property?._id}`);
   };
 
   const favoriteHandler = async () => {
@@ -84,16 +82,14 @@ export const Product = () => {
   };
 
   const loadData = async () => {
-    console.log(53, id)
+    console.log("Product Page. Product Id: ", id)
     const property = await ProductService.getProduct(id).then(async (res) => {
-      console.log(55, res)
 
-      console.log(17, res?.data?.author)
+      console.log("Product Page. Author: ", res?.data?.author)
       const author = await ProductService.getDeveloper(
         res?.data?.author || res?.data?.author
       );
-      console.log(16, author)
-      setDeveloper(author.data);
+      setAuthor(author.data);
       if(res?.data?.rating){
         setCourseRating(res?.data?.rating);
       }
@@ -210,9 +206,10 @@ export const Product = () => {
                 onClick={handleReserveButtonClick}
                 type='fill'
               >
-                {property?.saleType === "auccion"
-                  ? t("property.reserveAuccion")
-                  : t("property.reserve")}
+                {
+                property?.type === "Books"
+                  ? "Download a book"
+                  : "Buy a course"}
               </Button>
             </div>
           </div>

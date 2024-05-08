@@ -166,12 +166,12 @@ export const Search = () => {
       directions: [
         {
           ...prevProperties.directions[0],
-          value: propertiesCount?.count.books,
+          value: propertiesCount?.count?.books,
         },
         {
           ...prevProperties.directions[1],
           
-          value: propertiesCount?.count.courses,
+          value: propertiesCount?.count?.courses,
         }
       ]
     }));
