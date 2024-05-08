@@ -28,35 +28,35 @@ export const ShowMore = () => {
   const [properties, setProperties] = useState(null);
   const [name, setName] = useState("");
   const [page, setPage] = useState(0);
-  const loadAuctions = async () => {
-    const req = await ProductService.getAuctions(10, page, false);
+  const loadBooks = async () => {
+    const req = await ProductService.getBooks(10, page, false);
     console.log(req);
     setProperties(req.data);
-    setName(req.data[0].saleType);
+    setName(req.data[0]?.type);
   };
 
   const loadInvestOffers = async () => {
     const req = await ProductService.getCourses(10, page, false);
     setProperties(req.data);
-    setName(req.data[0].saleType);
+    setName(req.data[0]?.type);
   };
 
   const loadBusinesses = async () => {
     const req = await ProductService.getCourses(10, page, false);
     setProperties(req.data);
-    setName(req.data[0].saleType);
+    setName(req.data[0]?.type);
   };
 
   const loadSales = async () => {
     const req = await ProductService.getCourses(10, page, false);
     setProperties(req.data);
-    setName(req.data[0].saleType);
+    setName("Courses");
   };
 
   const loadData = async () => {
     switch (category) {
-      case "auction":
-        await loadAuctions();
+      case "books":
+        await loadBooks();
         break;
       case "investment-deals":
         await loadInvestOffers();
@@ -64,7 +64,7 @@ export const ShowMore = () => {
       case "business":
         await loadBusinesses();
         break;
-      case "sales-start":
+      case "courses":
         await loadSales();
         break;
       default:
@@ -87,7 +87,7 @@ export const ShowMore = () => {
         />
         <div className={cl.top}>
           <div className={cl.left}>
-            <div className={cl.title}>{t(`path.showMore.${name}`)}</div>
+            <div className={cl.title}>{name}</div>
           </div>
           <div className={cl.right}>
             <div className={cl.flatButtons}>
