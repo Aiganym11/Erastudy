@@ -70,7 +70,7 @@ export const CitiesGallery = () => {
           className={cl.big}
           style={{
             background: `url(${
-              items[selected]?.image
+              items[selected]?.images[0]
             }`,
           }}
           onClick={() => {
