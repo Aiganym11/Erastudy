@@ -282,10 +282,6 @@ export const Main = () => {
                   </Link>
                 </div>
 
-                <div className={cl.gallery}>
-                <ReviewsGallery />
-              </div>
-
                 <div className={cl.items}>
                   {isLoading
                     ? Array.from({ length: 5 }).map((_, i) => (
