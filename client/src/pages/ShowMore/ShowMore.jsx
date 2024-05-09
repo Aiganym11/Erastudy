@@ -67,7 +67,7 @@ export const ShowMore = () => {
       <div className='wrapper'>
         <Breadcrumbs
           path={[`all/${category}`]}
-          name={[`${t(`path.showMore.${name}`)}`]}
+          name={[`${name}`]}
         />
         <div className={cl.top}>
           <div className={cl.left}>

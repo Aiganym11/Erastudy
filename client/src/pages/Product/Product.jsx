@@ -147,7 +147,7 @@ export const Product = () => {
                 <div className={cl.subtitleLeft}>
                   <div className={cl.type}>{t("property.type")}</div>
                   <div className={cl.valueLeft}>
-                    {t("property.residential")}
+                    {property?.type}
                   </div>
                 </div>
                 <div className={cl.subtitleRight}>
@@ -231,7 +231,7 @@ export const Product = () => {
                 <div className={cl.rank}>
                   <div className={cl.rankTitle}>{t("property.rank")}</div>
                   <div className={cl.rankValue}>
-                    {author ? author.rating : <Skeleton width={100} />}
+                    {author ? author?.experience : <Skeleton width={100} />}
                   </div>
                 </div>
                 <div className={cl.solvency}>
@@ -240,7 +240,7 @@ export const Product = () => {
                   </div>
                   <div className={cl.solvencyValue}>
                     {author ? (
-                      author.financialStability
+                      author?.hourlyRate
                     ) : (
                       <Skeleton width={100} />
                     )}

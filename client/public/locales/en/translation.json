@@ -88,8 +88,8 @@
     "card6": "Invetment Deals"
   },
   "devider": {
-    "title": "to get started?",
-    "subtitle": "Consistent passive income from monthly rental payments",
+    "title": "Ready to get started?",
+    "subtitle": "Learn all the skills that you need here",
     "button": "Try for free"
   },
   "section2": {
@@ -186,9 +186,9 @@
       "purchased": "Open financial text of the deal",
       "notPurchased": "Order now"
     },
-    "aboutDev": "About the Developer",
-    "rank": "Rating",
-    "solvency": "Financial Stability:",
+    "aboutDev": "About the Author",
+    "rank": "Experience",
+    "solvency": "Hourly rate: ",
     "landMark": "Nearby",
     "viewAll": "View All",
     "details": "More Details"
@@ -474,7 +474,7 @@
         "showMore": {
           "terms": "Terms of participation",
           "howItWorks": "How it works?",
-          "closestLot": "Closest lot:",
+          "closestLot": "Webinar:",
           "title": "Information"
         },
         "fileCard": {
