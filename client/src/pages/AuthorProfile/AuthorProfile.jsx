@@ -3,7 +3,7 @@ import cl from "./AuthorProfile.module.css";
 import { Icon } from "../../components/UI/Icon/Icon.jsx";
 import { useSelector } from "react-redux";
 import { EditModalForm } from "../../modules/EditModalForm/EditModalForm.jsx";
-import { ProfileFavorites } from "../../modules/ProfileFavorites/ProfileFavorites.jsx";
+import { TeacherProfileBooks } from "../../modules/TeacherProfileBooks/TeacherProfileBooks.jsx";
 import { BuyHistory } from "../../modules/BuyHistory/BuyHistory.jsx";
 import { useLocation } from "react-router-dom";
 import { BookingHistory } from "../../modules/BookingHistory/BookingHistory.jsx";
@@ -15,9 +15,8 @@ import AuthorService from "../../service/AuthorService.js";
 
 export const AuthorProfile = () => {
   const { t } = useTranslation();
-  const location = useLocation();
   const [activeTab, setActiveTab] = useState(
-    location?.state?.url === "history" ? "history" : "favorites"
+    "favorites"
   );
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const user = useSelector((state) => state.auth.userData);
@@ -88,7 +87,7 @@ export const AuthorProfile = () => {
                     <div className={cl.icon}>
                       <Icon name='email' />
                     </div>
-                    <div className={cl.text}>{user?.email}</div>
+                    <div className={cl.text}>{author?.email}</div>
                   </div>
                 </div>
 
@@ -97,7 +96,7 @@ export const AuthorProfile = () => {
                     <div className={cl.icon}>
                       <Icon name='phone' />
                     </div>
-                    <div className={cl.text}>{user?.phone}</div>
+                    <div className={cl.text}>{author?.phoneNumber}</div>
                   </div>
 
                   <div
@@ -205,7 +204,7 @@ export const AuthorProfile = () => {
                   }`}
                   onClick={() => setActiveTab("favorites")}
                 >
-                  {t("profile.favorite")}
+                  Books
                 </div>
                 <div
                   className={`${cl.switchText} ${
@@ -244,9 +243,10 @@ export const AuthorProfile = () => {
 
               {activeTab === "favorites" && (
                 <div className={cl.favorite}>
-                  <ProfileFavorites
+                  <TeacherProfileBooks
                     activeTab={activeTab}
                     isCLoading={isLoading}
+                    books = {author?.books}
                   />
                 </div>
               )}

@@ -7,6 +7,8 @@ const schema = new mongoose.Schema({
   experience: { type: Number, required: true },
   hourlyRate: { type: Number, required: true },
   profilePicture: { type: String, required: false },
+  email: { type: String, required: false },
+  phoneNumber: { type: String, required: false },
 });
 
 export default mongoose.model("Author", schema);
