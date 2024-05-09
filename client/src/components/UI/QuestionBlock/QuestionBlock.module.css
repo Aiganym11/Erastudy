@@ -111,3 +111,10 @@
     transform: rotate(180deg);
   }
 }
+
+
+.videoPlayer {
+  width: 100%;
+  height: auto;
+  margin-top: 20px;
+}

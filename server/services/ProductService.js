@@ -190,6 +190,8 @@ class ProductService {
         price,
       } = filters;
 
+      console.log(11, type)
+
       const sortCriteria = {};
       if (currentSort === "priceAscending") {
         sortCriteria.price = 1;

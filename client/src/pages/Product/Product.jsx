@@ -101,11 +101,9 @@ export const Product = () => {
     });
 
     setProduct(property.data);
-    const propertyData = [
-      property?.data?.description
-    ];
 
-    setQuestionData((prevData) => [...prevData, ...propertyData]);
+
+    setQuestionData(property?.data?.lessons);
   };
 
   useEffect(() => {
@@ -254,12 +252,11 @@ export const Product = () => {
               {questionData.map((question, index) => (
                 <QuestionBlock
                   key={index}
-                  title={t(`property.description.${index + 1}.title`)}
+                  title={question.title}
                   content={
-                    question[
-                      i18n.language == "en" ? 0 : i18n.language == "ru" ? 1 : 2
-                    ]
+                    question.text
                   }
+                  video_url={question.video_url}
                   count={index + 1}
                   border={cl.border}
                   active={cl.activeQuestionBlock}
