@@ -39,10 +39,16 @@ export const QuestionBlock = ({
         {isOpen && 
         <div className={`${answer}`}>
           {video_url && (
-              <video controls src={video_url} className={cl.videoPlayer}>
-                Sorry, your browser does not support embedded videos.
-              </video>
+              <iframe
+              src={video_url}
+              frameBorder="0"
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className={cl.videoFrame}
+            ></iframe> 
+              
             )}
+            
           {content}
         </div>}
       </div>
