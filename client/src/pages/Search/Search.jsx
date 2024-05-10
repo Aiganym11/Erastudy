@@ -34,27 +34,26 @@ export const Search = () => {
   const settings = useSelector((state) => state.settings);
   const [cities, setCities] = useState([]);
   const [isProductTypeExpanded, setIsProductTypeExpanded] = useState(
-    location.state?.directions?.length > 0
+    location.state?.type?.length > 0
   );
   const [sortsModalMobileOpen, setSortsModalMobileOpen] = useState(false);
   const [filters, setFilters] = useState({
-    directions: [],
+    type: [],
     price: "",
-    isCompleted: [],
     ...location.state,
   });
   const [properties, setProperties] = useState({
-    directions: [
+    type: [
       {
         id: 1,
-        text: "Книги",
+        text: "Books",
         value: null,
         isChecked: false,
         name: "residentialProduct",
       },
       {
         id: 2,
-        text: "Курсы",
+        text: "Courses",
         value: null,
         isChecked: false,
         name: "landPlot",
@@ -100,9 +99,8 @@ export const Search = () => {
   };
   const isFilterEmpty = () => {
     return (
-      filters?.directions?.length === 0 &&
-      filters?.price === "" &&
-      filters?.isCompleted?.length === 0
+      filters?.type?.length === 0 &&
+      filters?.price === ""
     );
   };
 
@@ -153,8 +151,8 @@ export const Search = () => {
   const loadCountProperties = async () => {
     setProperties((prevProperties) => ({
       ...prevProperties,
-      directions: prevProperties.directions.map((type) => {
-        if (type.text === location.state?.directions?.[0]) {
+      type: prevProperties.type.map((type) => {
+        if (type.text === location.state?.type?.[0]) {
           return { ...type, isChecked: true };
         }
         return type;
@@ -163,13 +161,13 @@ export const Search = () => {
     const propertiesCount = await ProductService.getCountProperties(filters);
     setProperties((prevProperties) => ({
       ...prevProperties,
-      directions: [
+      type: [
         {
-          ...prevProperties.directions[0],
+          ...prevProperties.type[0],
           value: propertiesCount?.count?.books,
         },
         {
-          ...prevProperties.directions[1],
+          ...prevProperties.type[1],
           
           value: propertiesCount?.count?.courses,
         }
@@ -234,9 +232,9 @@ export const Search = () => {
                 isChecked={true}
                 title={t("search.filterTitle.1")}
               >
-                {Object.values(properties.directions).map((item) => (
+                {Object.values(properties.type).map((item) => (
                   <SelectionBox
-                    id={`directions-${item.id}`}
+                    id={`type-${item.id}`}
                     key={item.id}
                     title={item.text}
                     value={item.value}
@@ -244,7 +242,7 @@ export const Search = () => {
                     onCheckboxChange={(e) => {
                       setProperties((prevState) => ({
                         ...prevState,
-                        directions: prevState.directions.map((type) => {
+                        type: prevState.type.map((type) => {
                           if (type.id === item.id) {
                             return { ...type, isChecked: e.target.checked };
                           }
@@ -252,14 +250,14 @@ export const Search = () => {
                         }),
                       }));
                       if (e.target.checked) {
-                        addFilter("directions", [
-                          ...filters.directions,
+                        addFilter("type", [
+                          ...filters.type,
                           item.text,
                         ]);
                       } else {
                         setFilters((prevState) => ({
                           ...prevState,
-                          directions: prevState.directions.filter(
+                          type: prevState.type.filter(
                             (type) => type !== item.text
                           ),
                         }));
@@ -408,9 +406,9 @@ export const Search = () => {
                 isChecked={isProductTypeExpanded}
                 title={t("search.filterTitle.1")}
               >
-                {Object.values(properties.directions).map((item) => (
+                {Object.values(properties.type).map((item) => (
                   <SelectionBox
-                    id={`directions-${item.id}`}
+                    id={`type-${item.id}`}
                     key={item.id}
                     title={item.text}
                     value={item.value}
@@ -418,7 +416,7 @@ export const Search = () => {
                     onCheckboxChange={(e) => {
                       setProperties((prevState) => ({
                         ...prevState,
-                        directions: prevState.directions.map((type) => {
+                        type: prevState.type.map((type) => {
                           if (type.id === item.id) {
                             return { ...type, isChecked: e.target.checked };
                           }
@@ -426,14 +424,14 @@ export const Search = () => {
                         }),
                       }));
                       if (e.target.checked) {
-                        addFilter("directions", [
-                          ...filters.directions,
+                        addFilter("type", [
+                          ...filters.type,
                           item.text,
                         ]);
                       } else {
                         setFilters((prevState) => ({
                           ...prevState,
-                          directions: prevState.directions.filter(
+                          type: prevState.type.filter(
                             (type) => type !== item.text
                           ),
                         }));
@@ -517,10 +515,6 @@ export const Search = () => {
                   ))}
                 </select>
               </SelectionBlock>
-
-              <div className={cl.add}>
-                <Advertisement />
-              </div>
             </div>
           </div>
         </>
