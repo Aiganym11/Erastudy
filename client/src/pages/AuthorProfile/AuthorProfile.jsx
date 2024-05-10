@@ -18,17 +18,7 @@ export const AuthorProfile = () => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [author, setAuthor] = useState();
   const { id } = useParams();
-  const user = useSelector((state) => state.auth.userData);
-
-  const [isDocumentEmpty, setIsDocumentEmpty] = useState(
-    user.iin === undefined ||
-      user.address === undefined ||
-      user.numberOfDocument === undefined
-  );
   const [editTab, setEditTab] = useState("profile");
-  const [isEmailHovered, setIsEmailHovered] = useState(false);
-  const [isPhoneHovered, setIsPhoneHovered] = useState(false);
-  const [isDocumentHovered, setIsDocumentHovered] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   const getInitials = (name) => {
