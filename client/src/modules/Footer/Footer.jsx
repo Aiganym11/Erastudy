@@ -95,7 +95,7 @@ export const Footer = () => {
                 <Icon name='facebook' />
               </Link>
               <Link
-                to='https://www.instagram.com/inlot.ai?igshid=OGQ5ZDc2ODk2ZA%3D%3D'
+                to='https://www.instagram.com/ai._.yu/'
                 className={cl.social}
                 target='_blank'
               >

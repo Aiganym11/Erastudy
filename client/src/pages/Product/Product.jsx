@@ -101,11 +101,9 @@ export const Product = () => {
     });
 
     setProduct(property.data);
-    const propertyData = [
-      property?.data?.description
-    ];
 
-    setQuestionData((prevData) => [...prevData, ...propertyData]);
+
+    setQuestionData(property?.data?.lessons);
   };
 
   useEffect(() => {
@@ -149,7 +147,7 @@ export const Product = () => {
                 <div className={cl.subtitleLeft}>
                   <div className={cl.type}>{t("property.type")}</div>
                   <div className={cl.valueLeft}>
-                    {t("property.residential")}
+                    {property?.type}
                   </div>
                 </div>
                 <div className={cl.subtitleRight}>
@@ -233,7 +231,7 @@ export const Product = () => {
                 <div className={cl.rank}>
                   <div className={cl.rankTitle}>{t("property.rank")}</div>
                   <div className={cl.rankValue}>
-                    {author ? author.rating : <Skeleton width={100} />}
+                    {author ? author?.experience : <Skeleton width={100} />}
                   </div>
                 </div>
                 <div className={cl.solvency}>
@@ -242,7 +240,7 @@ export const Product = () => {
                   </div>
                   <div className={cl.solvencyValue}>
                     {author ? (
-                      author.financialStability
+                      author?.hourlyRate
                     ) : (
                       <Skeleton width={100} />
                     )}
@@ -254,12 +252,11 @@ export const Product = () => {
               {questionData.map((question, index) => (
                 <QuestionBlock
                   key={index}
-                  title={t(`property.description.${index + 1}.title`)}
+                  title={question.title}
                   content={
-                    question[
-                      i18n.language == "en" ? 0 : i18n.language == "ru" ? 1 : 2
-                    ]
+                    question.text
                   }
+                  video_url={question.video_url}
                   count={index + 1}
                   border={cl.border}
                   active={cl.activeQuestionBlock}

@@ -11,6 +11,7 @@ export const QuestionBlock = ({
   answer,
   lastBlock,
   className,
+  video_url
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
@@ -35,7 +36,15 @@ export const QuestionBlock = ({
             <Icon name={`${flatIcon ? "arrowRight" : "arrowDown"}`} />
           </div>
         </div>
-        {isOpen && <div className={`${answer}`}>{content}</div>}
+        {isOpen && 
+        <div className={`${answer}`}>
+          {video_url && (
+              <video controls src={video_url} className={cl.videoPlayer}>
+                Sorry, your browser does not support embedded videos.
+              </video>
+            )}
+          {content}
+        </div>}
       </div>
     </div>
   );

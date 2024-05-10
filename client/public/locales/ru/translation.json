@@ -89,9 +89,9 @@
     "card5": "Бизнес аналитика"
   },
   "devider": {
-    "title": "Ready to get started?",
-    "subtitle": "Consistent passive income from monthly rental payments",
-    "button": "Try for free"
+    "title": "Готовы начать?",
+    "subtitle": "Изучите все нужные вам навыки",
+    "button": "Попробовать бесплатно"
   },
   "section2": {
     "more": "Смотреть все",
@@ -191,9 +191,9 @@
       "purchased": "Открыть финансовый текст сделки",
       "notPurchased": "Заказать сейчас"
     },
-    "aboutDev": "О застройщике",
-    "rank": "Рейтинг",
-    "solvency": "Финансовая устойчивость:",
+    "aboutDev": "Об авторе",
+    "rank": "Опыт работы",
+    "solvency": "Почасовая оплата: ",
     "landMark": "В окрестностях",
     "viewAll": "Смотреть все",
     "details": "Подробнее"
@@ -475,7 +475,7 @@
   "showMore": {
     "terms": "Условия участия",
     "howItWorks": "Как это работает?",
-    "closestLot": "Webinar",
+    "closestLot": "Вебинар:",
     "title": "Информация"
   },
   "fileCard": {
