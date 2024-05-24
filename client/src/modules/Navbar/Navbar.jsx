@@ -154,6 +154,17 @@ export const Navbar = () => {
               </Link>
             </div>
             <div className={cl.item}>
+              <Link
+                to='/chat'
+                // to={presentation}
+                // download={presentation}
+                // target='_blank'
+                className={`${cl.link} headline`}
+              >
+                AI Assistant
+              </Link>
+            </div>
+            <div className={cl.item}>
               <Link to='/' className={`${cl.link} headline`}>
                 {t("navbar.link4")}
               </Link>

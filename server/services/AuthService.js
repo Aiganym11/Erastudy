@@ -67,9 +67,8 @@ class AuthService {
           const user = await models.User.create({
             email,
             name,
-            type,
             verificationCode: code,
-            isVerified: false,
+            isVerified: false
           });
           await user.save();
           await EmailSender.sendEmail(
@@ -85,9 +84,8 @@ class AuthService {
       const user = await models.User.create({
         email,
         name,
-        type,
         verificationCode: code,
-        isVerified: false,
+        isVerified: false
       });
       await user.save();
       await EmailSender.sendEmail(

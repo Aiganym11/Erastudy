@@ -6,7 +6,8 @@ import Payment from "./Payment.js";
 import Sells from "./Sells.js";
 import Contact from "./Contact.js";
 import LotContactForm from "./LotContactForm.js";
-import Author from "./Author.js"
+import Author from "./Author.js";
+import Chat from "./Chat.js";
 export default {
   Product,
   User,
@@ -16,5 +17,6 @@ export default {
   Settings,
   Contact,
   LotContactForm,
-  Author
+  Author,
+  Chat
 };

@@ -28,6 +28,8 @@ dotenv.config({
 
 const componentLoader = new ComponentLoader();
 const PORT = process.env.PORT || 8080;
+
+
 const app = express();
 
 app.use(cors());
@@ -40,6 +42,9 @@ app.use("/settings", routers.SettingsRouter);
 app.use("/payment", routers.PaymentRouter);
 app.use("/lot", routers.LotContactFormRouter);
 app.use("/authors", routers.AuthorRouter);
+app.use("/chat", routers.AIRouter)
+
+
 
 const InitTelegramBot = async () => {
   try {
