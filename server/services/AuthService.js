@@ -88,10 +88,12 @@ class AuthService {
         isVerified: false
       });
       await user.save();
+      const verificationLink = `<a href="${process.env.CURRENT_URL}verify/${code}"> Verify </a>`
+      console.log(verificationLink)
       await EmailSender.sendEmail(
         email,
         "Verification code",
-        `<a href="${process.env.CURRENT_URL}verify/${code}"> Verify </a>`
+        verificationLink
       );
       return { message: "User created", status: 201 };
     } catch (e) {

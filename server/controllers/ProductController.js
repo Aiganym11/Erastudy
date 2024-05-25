@@ -24,7 +24,8 @@ class ProductController {
   }
 
   async getById(req, res) {
-    const response = await ProductService.getById(req.params.id);
+    const userId = req.user ? req.user.data._id : null; 
+    const response = await ProductService.getById(req.params.id, userId);
     return res.status(response.status).json(response);
   }
 

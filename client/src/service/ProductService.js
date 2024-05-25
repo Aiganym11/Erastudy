@@ -87,7 +87,7 @@ class ProductController {
   async getProduct(id) {
     try {
       console.log(54, id)
-      const req = await $host.get(`product/id/${id}`);
+      const req = await $authHost.get(`product/id/${id}`);
       return req.data;
     } catch (e) {
       return null;
