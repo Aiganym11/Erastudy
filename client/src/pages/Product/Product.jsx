@@ -207,11 +207,14 @@ export const Product = () => {
                 className={cl.button}
                 onClick={handleReserveButtonClick}
                 type='fill'
+                disabled={property?.isBought}
               >
                 {
-                property?.type === "Books"
-                  ? "Download a book"
-                  : "Buy a course"}
+                 property?.isBought 
+                 ? "Item Purchased" 
+                 : property?.type === "Books"
+                   ? "Download a book"
+                   : "Buy a course"}
               </Button>
             </div>
           </div>

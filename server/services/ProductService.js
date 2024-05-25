@@ -19,10 +19,7 @@ class ProductService {
   async getBoughtProperties(userId) {
     try {
       const bought = await models.Sells.find({ user: userId });
-      const booked = await models.Bookings.find({ user: userId });
-      const files = await models.File.find({ user: userId });
-      const auctions = await models.Auction.find({ user: userId });
-      return { status: 200, data: { bought, booked, files, auctions } };
+      return { status: 200, data: { bought } };
     } catch (e) {
       return { status: 500, data: e };
     }
@@ -50,14 +47,26 @@ class ProductService {
     }
   }
 
-  async getById(id) {
+  async getById(id, userId = null) {
     try {
       if (!id) return { status: 400, data: "Id not specified", id };
+      const bought = await models.Sells.find({ user: userId, product: id });
+      console.log("Bought: ", bought)
+
+      const isBought = bought.length === 1 ? true : false;
       const product = await models.Product.findById({
-        _id: id,
+        _id: id
       });
       if (!product) return { status: 404, data: "Product not found" };
-      return { status: 200, data: product };
+
+      if(isBought === false){
+        product.lessons = product.lessons.slice(0, 5)
+      }
+      
+      return { status: 200, data: { 
+        isBought,
+        ...product.toObject()
+      } };
     } catch (e) {
       console.log(e);
       return { status: 500, data: e };
