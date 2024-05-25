@@ -131,19 +131,24 @@ export const ShowMore = () => {
                     ]
                   : null}{" "}
               </div>
+
+
               <div
                 className={cl.leftTopButton}
-                onClick={() => navigate(`/product/${properties[0]._id}`)}
+                onClick={(e) => {
+                  e.preventDefault(); // Prevent any default action
+                  e.stopPropagation(); // Stop the event from bubbling up
+                  window.open('https://meet.google.com/yex-nqwz-fhg', '_blank'); // Open in new tab
+                }}
               >
-                Подробнее
+               Подробнее
               </div>
+
             </div>
             <div className={cl.headerRight}>
               <div className={cl.card}>
                 <div className={cl.cardContent}>
-                  Find more than 5.000 flats from insolvencies and
-                  restructurings from all across Europe. Immediately available
-                  without long waiting times and running-in cycles.
+                Sign up for a free webinar and find out which course is more suitable for you.
                   <div
                     className={cl.RightTopButton}
                     // onClick={() => navigate(`/product/${properties[0]._id}`)}
@@ -152,7 +157,6 @@ export const ShowMore = () => {
                       setActiveTab("conditionsOfParticipation");
                     }}
                   >
-                    Подробнее
                   </div>
                 </div>
               </div>
