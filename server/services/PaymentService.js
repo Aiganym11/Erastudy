@@ -19,12 +19,12 @@ class PaymentService {
       "scope",
       "usermanagement email_send verification statement statistics payment"
     );
-    formdata.append("client_id", process.env.PAYMENT_CLIENT_ID);
-    formdata.append("client_secret", process.env.PAYMENT_CLIENT_SECRET);
+    formdata.append("client_id", "test");
+    formdata.append("client_secret", "yF587AV9Ms94qN2QShFzVR3vFnWkhjbAK3sG");
     formdata.append("invoiceID", invoiceId);
     formdata.append("amount", amount);
     formdata.append("currency", "KZT");
-    formdata.append("terminal", process.env.PAYMENT_TERMINAL_ID);
+    formdata.append("terminal", "67e34d63-102f-4bd1-898e-370781d0074d");
 
     const authPayment = axios.post(process.env.PAYMENT_AUTH_URL, formdata, {
       headers: {

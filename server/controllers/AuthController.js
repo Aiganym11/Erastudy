@@ -17,8 +17,8 @@ class AuthController {
 
   async register(req, res) {
     try {
-      const { email, name, type } = req.body;
-      const response = await AuthService.register(email, name, type);
+      const { email, name } = req.body;
+      const response = await AuthService.register(email, name);
       return res.status(response.status).json(response);
     } catch (e) {
       console.log(e);

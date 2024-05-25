@@ -18,6 +18,7 @@ import { EditProfile } from "../pages/EditProfile/EditProfile.jsx";
 import { Reviews } from "../pages/Reviews/Reviews";
 import { TeachersList } from "../pages/TeacherList/TeacherList.jsx";
 import { AuthorProfile } from "../pages/AuthorProfile/AuthorProfile.jsx";
+import { Chat } from "../pages/Chat/Chat.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -215,6 +216,14 @@ export const AuthRouter = createBrowserRouter([
     element: (
       <PageWrapper>
         <Product />
+      </PageWrapper>
+    ),
+  },
+  {
+    path: "/chat",
+    element: (
+      <PageWrapper>
+        <Chat />
       </PageWrapper>
     ),
   },
