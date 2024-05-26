@@ -243,39 +243,21 @@ export const ShowMore = () => {
               {activeTab === "conditionsOfParticipation" ? (
                 <div className={cl.modalSection}>
                   <div className={cl.sectionTitle}>
-                    Raw denim you probably haven't heard
+                  Для участия в нашем бесплатном вебинаре вам необходимо выполнить несколько простых шагов:
                   </div>
                   <div className={cl.sectionText}>
-                    1Anim pariatur cliche reprehenderit, enim eiusmod high life
-                    accusamus terry richardson ad squid. 3 wolf moon officia
-                    aute, non cupidatat skateboard dolor brunch. Food truck
-                    quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
-                    sunt aliqua put a bird on it squid single-origin coffee
-                    nulla assumenda shoreditch et. Nihil anim keffiyeh
-                    helvetica, craft beer labore wes anderson cred nesciunt
-                    sapiente ea proident. Ad vegan excepteur butcher vice lomo.
-                    craft beer farm-to-table, raw denim aesthetic synth nesciunt
-                    you probably haven't heard accusamus dolores eos qui ratione
-                    voluptatem.
+                  <ul> 1. Регистрация: </ul> <ul>Заполните регистрационную форму на нашем сайте, указав своё имя и электронную почту. После регистрации вы получите электронное подтверждение и дальнейшие инструкции на указанную почту. </ul>
+                  <ul> 2. Технические требования: </ul> <ul> Проверьте, соответствует ли ваше устройство техническим требованиям для подключения к вебинару. Обеспечьте стабильное интернет-соединение и наличие необходимых аудио и видео средств.</ul>
                   </div>
                 </div>
               ) : (
                 <div className={cl.modalSection}>
                   <div className={cl.sectionTitle}>
-                    Raw denim you probably haven't heard
+                  Участие в вебинаре абсолютно бесплатно, и каждый участник получит электронный сертификат по окончании мероприятия.
                   </div>
                   <div className={cl.sectionText}>
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life
-                    accusamus terry richardson ad squid. 3 wolf moon officia
-                    aute, non cupidatat skateboard dolor brunch. Food truck
-                    quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
-                    sunt aliqua put a bird on it squid single-origin coffee
-                    nulla assumenda shoreditch et. Nihil anim keffiyeh
-                    helvetica, craft beer labore wes anderson cred nesciunt
-                    sapiente ea proident. Ad vegan excepteur butcher vice lomo.
-                    craft beer farm-to-table, raw denim aesthetic synth nesciunt
-                    you probably haven't heard accusamus dolores eos qui ratione
-                    voluptatem.
+                  <ul> 1. Подключение к вебинару: </ul> <ul> За неделю до начала вебинара на вашу электронную почту придет ссылка для подключения, вместе с точной датой и временем проведения мероприятия. Рекомендуем заранее проверить работоспособность ссылки и технические возможности вашего устройства. </ul>
+                  <ul> 2. Участие и взаимодействие: </ul> <ul> Во время вебинара вы сможете активно участвовать в обсуждениях, задавать вопросы и обмениваться мнениями с преподавателями и другими участниками через систему чата.</ul>
                   </div>
                 </div>
               )}
