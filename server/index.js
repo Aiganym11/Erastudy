@@ -50,7 +50,7 @@ app.use("/reviews", routers.ReviewRouter)
 const InitTelegramBot = async () => {
   try {
     console.log("Telegram bot init");
-    const bot = await new TelegramBot(process.env.TELEGRAM_BOT_API, {
+    const bot = new TelegramBot(process.env.TELEGRAM_BOT_API, {
       polling: true,
     });
 

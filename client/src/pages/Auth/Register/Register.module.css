@@ -247,3 +247,13 @@
     margin-top: 24px;
   }
 }
+
+.inputView label {
+  margin-left: 8px;
+  font-size: 16px;
+  color: #2a3044; 
+}
+
+.inputView div {
+  margin-bottom: 12px;
+}

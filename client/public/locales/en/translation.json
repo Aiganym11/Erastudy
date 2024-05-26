@@ -343,6 +343,11 @@
             "link": "Register"
           },
           "register": {
+            "role": {
+              "label": "Role",
+              "student": "Student",
+              "teacher": "Teacher"
+            },
             "back": "Back",
             "email": {
               "label": "Email address",

@@ -18,6 +18,7 @@ export const Register = () => {
   const [emailError, setEmailError] = useState(false);
   const [isEmailExist, setIsEmailExist] = useState(false);
   const [name, setName] = useState("");
+  const [role, setRole] = useState("Student"); 
 
   const changeEmail = (e) => setEmail(e.target.value);
   const changeName = (e) => setName(e.target.value);
@@ -29,7 +30,7 @@ export const Register = () => {
     }
     try {
       setIsLoading(true);
-      const registerData = await AuthService.register({ email, name });
+      const registerData = await AuthService.register({ email, name, role });
       if (registerData != null && registerData?.data?.status != 400) {
         console.log("registerData", registerData);
         console.log("registerData");
@@ -125,6 +126,34 @@ export const Register = () => {
                       )}
                     </div>
                   </div>
+
+                  <div className={cl.field}>
+                  <label htmlFor="role" className={cl.label}>{t("auth.register.role.label")}</label>
+                  <div className={cl.inputView}>
+                    <div>
+                      <input
+                        type="radio"
+                        id="student"
+                        name="role"
+                        value="Student"
+                        checked={role === "Student"}
+                        onChange={() => setRole("Student")}
+                      />
+                      <label htmlFor="student">{t("auth.register.role.student")}</label>
+                    </div>
+                    <div>
+                      <input
+                        type="radio"
+                        id="teacher"
+                        name="role"
+                        value="Teacher"
+                        checked={role === "Teacher"}
+                        onChange={() => setRole("Teacher")}
+                      />
+                      <label htmlFor="teacher">{t("auth.register.role.teacher")}</label>
+                    </div>
+                  </div>
+                </div>
                 </div>
                 <Button className={cl.submit} onClick={handleRegister}>
                   {t("auth.register.button")}

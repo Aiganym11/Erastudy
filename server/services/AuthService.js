@@ -53,7 +53,7 @@ class AuthService {
       return { error: e, status: 500 };
     }
   }
-  async register(email, name, type) {
+  async register(email, name, role) {
     try {
       const candidate = await models.User.findOne({ email });
       if (candidate) {
@@ -68,7 +68,8 @@ class AuthService {
             email,
             name,
             verificationCode: code,
-            isVerified: false
+            isVerified: false,
+            role
           });
           await user.save();
           await EmailSender.sendEmail(
@@ -85,7 +86,8 @@ class AuthService {
         email,
         name,
         verificationCode: code,
-        isVerified: false
+        isVerified: false,
+        role
       });
       await user.save();
       const verificationLink = `<a href="${process.env.CURRENT_URL}verify/${code}"> Verify </a>`
