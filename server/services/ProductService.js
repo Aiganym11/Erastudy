@@ -50,10 +50,14 @@ class ProductService {
   async getById(id, userId = null) {
     try {
       if (!id) return { status: 400, data: "Id not specified", id };
-      const bought = await models.Sells.find({ user: userId, product: id });
+      const [bought, reviewed] = await Promise.all([
+        models.Sells.find({ user: userId, product: id }),
+        models.Review.find({ user: userId, product: id })
+      ])
       console.log("Bought: ", bought)
 
       const isBought = bought.length === 1 ? true : false;
+      const isReviewed = reviewed.length === 1 ? true : false;
       const product = await models.Product.findById({
         _id: id
       });
@@ -65,6 +69,7 @@ class ProductService {
       
       return { status: 200, data: { 
         isBought,
+        isReviewed,
         ...product.toObject()
       } };
     } catch (e) {

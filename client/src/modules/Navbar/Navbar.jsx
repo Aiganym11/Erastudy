@@ -207,14 +207,6 @@ export const Navbar = () => {
                     </div>
                     <div
                       onClick={() => {
-                        changeLanguage("kz");
-                      }}
-                      className={cl.menu__item}
-                    >
-                      Қазақша
-                    </div>
-                    <div
-                      onClick={() => {
                         changeLanguage("ru");
                       }}
                       className={cl.menu__item}
@@ -534,14 +526,6 @@ export const Navbar = () => {
                     className={cl.menu__item}
                   >
                     English
-                  </div>
-                  <div
-                    onClick={() => {
-                      changeLanguage("kz");
-                    }}
-                    className={cl.menu__item}
-                  >
-                    Қазақша
                   </div>
                   <div
                     onClick={() => {

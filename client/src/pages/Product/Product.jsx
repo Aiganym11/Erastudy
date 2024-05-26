@@ -14,6 +14,10 @@ import { Icon } from "../../components/UI/Icon/Icon.jsx";
 import { QuestionBlock } from "../../components/UI/QuestionBlock/QuestionBlock.jsx";
 import { Tooltip } from "../../components/UI/Tooltip/Tooltip.jsx";
 import { Breadcrumbs } from "../../components/UI/Breadcrumbs/Breadcrumbs.jsx";
+import ReviewItem from './ReviewItem';
+import Pagination from './Pagination';
+import ReviewService from "../../service/ReviewService.js";
+import StarRating from './StarRating';
 
 export const Product = () => {
   const { t, i18n } = useTranslation();
@@ -23,6 +27,7 @@ export const Product = () => {
   const [activeButton, setActiveButton] = useState(0);
   const [questionData, setQuestionData] = useState([]);
   const [courseRating, setCourseRating] = useState(0);
+  const [starRating, setStarRating] = useState(0);
   const navigate = useNavigate();
 
   const [descriptions, setDescriptions] = useState([]);
@@ -33,7 +38,22 @@ export const Product = () => {
 
   const { id } = useParams();
 
-  console.log(11, id)
+  const [reviews, setReviews] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [reviewText, setReviewText] = useState('');
+  const totalPages = Math.ceil(reviews.length / 10);
+
+  const handlePageChange = (newPage) => {
+    setCurrentPage(newPage);
+  };
+
+  const handleReviewSubmit = async () => {
+    const reviews = await ReviewService.createReview(id, starRating, reviewText)
+    console.log("Review Submitted:", reviewText);
+    setReviewText('');
+    setStarRating(0); 
+    setReviews(reviews ?? [])
+  };
 
   const descriptionsArray = descriptions.map((descriptionInfo, index) => (
     <div key={index} className={cl.descriptionItem}>
@@ -93,7 +113,9 @@ export const Product = () => {
       const author = await ProductService.getDeveloper(
         res?.data?.author || res?.data?.author
       );
-      setAuthor(author.data);
+      const reviews = await ReviewService.getProductReviews(id);
+      setReviews(reviews.data)
+      setAuthor(author?.data);
       if(res?.data?.rating){
         setCourseRating(res?.data?.rating);
       }
@@ -274,6 +296,35 @@ export const Product = () => {
         <div className={cl.pageRight}>
         </div>
       </div>
+
+      <div className={cl.reviewContainer}>
+        {reviews.slice((currentPage - 1) * 10, currentPage * 10).map(review => (
+          <ReviewItem key={review.id} review={review} />
+        ))}
+        <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
+      </div>
+      {
+      !property?.isReviewed  && ( 
+        <div>
+          <StarRating rating={starRating} setRating={setStarRating} />
+          <textarea
+            className={cl.textArea}
+            value={reviewText}
+            onChange={(e) => setReviewText(e.target.value)}
+            placeholder="Write your review here..."
+            rows="4"
+            style={{ width: '100%', padding: '10px', boxSizing: 'border-box', borderRadius: '8px' }}
+          ></textarea>
+          <button
+            className={cl.submitButton}
+            onClick={handleReviewSubmit}
+            disabled={!reviewText.trim()}
+          >
+            Submit Review
+          </button>
+        </div>
+      )
+    }
     </div>
   );
 };

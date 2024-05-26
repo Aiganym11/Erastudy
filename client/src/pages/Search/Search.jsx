@@ -24,9 +24,9 @@ export const Search = () => {
   const [currentSort, setCurrentSort] = useState("priceAscending");
   const [isLoading, setIsLoading] = useState(true);
   const [minPriceAmount, setMinPriceAmount] = useState("0");
-  const [maxPriceAmount, setMaxPriceAmount] = useState("99999999999");
+  const [maxPriceAmount, setMaxPriceAmount] = useState("100000");
   const [minPrice, setMinPrice] = useState(0);
-  const [maxPrice, setMaxPrice] = useState(999999);
+  const [maxPrice, setMaxPrice] = useState(100000);
   const [numberOfProperties, setNumberOfProperties] = useState(0);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -182,7 +182,7 @@ export const Search = () => {
 
   useEffect(() => {
     const delayDebounce = setTimeout(() => {
-      addFilter("price", `${minPriceAmount * 1000} - ${maxPriceAmount * 1000}`);
+      addFilter("price", `${minPriceAmount} - ${maxPriceAmount}`);
     }, 500);
     return () => clearTimeout(delayDebounce);
   }, [minPriceAmount, maxPriceAmount]);
@@ -475,11 +475,7 @@ export const Search = () => {
                         // placeholder='999999'
                         className={cl.fontArea}
                         type='number'
-                        value={
-                          maxPriceAmount === "999999" ? "" : maxPriceAmount
-                        }
                         onChange={handleMaxPriceAmount}
-                        maxLength={13}
                       />
                       <div className={cl.k}>K</div>
                     </div>
