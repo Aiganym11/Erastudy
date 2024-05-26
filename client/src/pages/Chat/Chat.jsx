@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AIService from "../../service/AIService";
-import cl from "./Chat.module.css";  // Importing CSS module
+import cl from "./Chat.module.css"; 
 
 export const Chat = () => {
     const [message, setMessage] = useState('');
@@ -12,6 +12,15 @@ export const Chat = () => {
         setConversation([...data]);
         setMessage('');
     };
+
+    const loadData = async () => {
+        const { data } = await AIService.getChat();
+        setConversation([...data])
+      };
+    
+      useEffect(() => {
+        loadData();
+      }, []);
 
     return (
         <div className={cl.root}>
