@@ -9,6 +9,7 @@ const schema = new mongoose.Schema({
   profilePicture: { type: String, required: false },
   email: { type: String, required: false },
   phoneNumber: { type: String, required: false },
+  description: { type: String, required: false },
 });
 
 export default mongoose.model("Author", schema);

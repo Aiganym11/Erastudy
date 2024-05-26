@@ -42,7 +42,8 @@ app.use("/settings", routers.SettingsRouter);
 app.use("/payment", routers.PaymentRouter);
 app.use("/lot", routers.LotContactFormRouter);
 app.use("/authors", routers.AuthorRouter);
-app.use("/chat", routers.AIRouter)
+app.use("/chat", routers.AIRouter);
+app.use("/reviews", routers.ReviewRouter)
 
 
 
