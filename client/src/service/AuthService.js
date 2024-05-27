@@ -13,9 +13,9 @@ class AuthService {
     }
   }
 
-  async register({ email, name }) {
+  async register({ email, name, role }) {
     try {
-      const response = await $host.post("auth/register", { email, name });
+      const response = await $host.post("auth/register", { email, name, role });
       const { status, data } = response;
       if (status == 200) {
         return true;

@@ -185,7 +185,7 @@ export const ProductCard = ({ item, type, customWidth, className }) => {
           }
         </div>
         <div className={cl.priceFlex}>
-          <div className={cl.price}>{maskToPrice(item?.price)} /м</div>
+          <div className={cl.price}>{maskToPrice(item?.price)}</div>
           <div className={cl.favorite} onClick={handleFavorite}>
             <div className={cl.favIcon}>
               {user?.userData?.favorites?.items?.includes(item?._id) ? (

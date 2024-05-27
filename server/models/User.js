@@ -18,7 +18,8 @@ const schema = new mongoose.Schema({
     type: mongoose.Schema.ObjectId,
     ref: "Favorite",
     required: false,
-  }
+  },
+  role: { type: String, required: false },
 });
 
 export default mongoose.model("User", schema);
