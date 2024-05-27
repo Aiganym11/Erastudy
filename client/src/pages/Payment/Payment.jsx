@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import ProductController from "../../service/ProductService";
 import cl from "./Payment.module.css";
-import img from "../../assets/images/payment.png";
+import img from "../../assets/images/IT.jpeg";
 import { Breadcrumbs } from "../../components/UI/Breadcrumbs/Breadcrumbs";
 import { Button } from "../../components/UI/Button/Button";
 import { PaymentType } from "../../modules/PaymentType/PaymentType";
@@ -95,7 +95,7 @@ export const Payment = () => {
         )}
       </div>
       <div className={cl.side}>
-        <img src={img} className={cl.img} />
+        <img src="https://st4.depositphotos.com/18433260/38990/i/450/depositphotos_389904224-stock-photo-provider-concept-in-vertical-format.jpg" className={cl.img} />
       </div>
     </div>
   );
