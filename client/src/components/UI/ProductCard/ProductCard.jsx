@@ -167,12 +167,12 @@ export const ProductCard = ({ item, type, customWidth, className }) => {
     >
       {item?.isTimer ? (
         <img
-          src={`${item?.images[0]}`}
+          src={`${item?.images?.length ? item?.images[0] : ''}`}
           className={cl.imgMin}
         />
       ) : (
         <img
-          src={item?.images[0]}
+          src={item?.images?.length ? item?.images[0] : ''}
           className={cl.img}
         />
       )}
