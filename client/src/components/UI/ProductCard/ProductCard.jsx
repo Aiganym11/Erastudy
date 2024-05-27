@@ -12,6 +12,7 @@ import { useSelector } from "react-redux";
 import ProductService from "../../../service/ProductService";
 
 export const ProductCard = ({ item, type, customWidth, className }) => {
+  console.log(22, "Product Card Item: ", item)
   const time = item?.timer ? new Date(item?.timer) : new Date();
   const user = useSelector((state) => state.auth);
   const navigate = useNavigate();
