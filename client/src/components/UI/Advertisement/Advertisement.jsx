@@ -19,10 +19,15 @@ export const Advertisement = ({ type, title, subtitle, link = "#", image }) => {
               {subtitle || t("devider.subtitle")}
             </div>
             <div className={cl.btn}>
-              <Button type='fill' className={cl.button}>
+              <Button
+                type='fill'
+                className={cl.button}
+                onClick={() => window.open('https://drive.google.com/file/d/1fhSzWrzfPZcgpjPBwu2k3omMMOKZEDAR/view?usp=sharing', '_blank')}
+                >
                 <div className='text-md'>{t("devider.button")}</div>
               </Button>
             </div>
+
           </div>
         </div>
         <div className={cl.right}>

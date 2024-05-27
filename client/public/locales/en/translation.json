@@ -5,15 +5,15 @@
     "favorite": "Favorites",
     "buyHistory": "Purchase History",
     "logout": "Logout",
-    "link1": "Lots",
-    "link2": "Investment Portfolio",
-    "link3": "For Developers",
-    "link4": "Education",
+    "link1": "Library",
+    "link2": "Courses",
+    "link3": "Teachers",
+    "link4": "About us",
     "language": "Eng",
     "btnLogin": "Login",
     "btnStartInvest": "Start Investing!",
     "lot": {
-      "text": "I want to post a lot",
+      "text": "Cooperate",
       "title": "Start earning!",
       "fillText": "Fill out the form",
       "city": {
@@ -60,9 +60,9 @@
     "type": {
       "options": {
         "type": "Property Type",
-        "option1": "Residential Real Estate",
-        "option2": "Commercial Real Estate",
-        "option3": "Land Plot"
+        "option1": "Project Management",
+        "option2": "Python Development",
+        "option3": "Motion design"
       }
     },
     "strategy": {
@@ -80,24 +80,23 @@
     "object": "objects"
   },
   "categoryCards": {
-    "card1": "Residential Real Estate",
-    "card2": "Foreign Real Estate",
-    "card3": "Land Plots",
-    "card4": "Commerce",
-    "card5": " Business",
-    "card6": "Invetment Deals"
+    "card1": "Python Development",
+    "card2": "Graphic Design",
+    "card3": "Java Development",
+    "card4": "Machine Learning",
+    "card5": " BI Analytics"
   },
   "devider": {
     "title": "Ready to get started?",
-    "subtitle": "Learn all the skills that you need here",
-    "button": "Try for free"
+    "subtitle": "Education is the key to unlocking peace!",
+    "button": "Individual Planner of Success"
   },
   "section2": {
     "more": "See all",
-    "title1": "Sales Start",
-    "title2": "Auction",
-    "title3": "Business",
-    "title4": "Investment Deals"
+    "title1": "Start learning the Courses",
+    "title2": "Find Books",
+    "title3": "Recomendations",
+    "title4": "Reviews"
   },
 
   "section3": {
