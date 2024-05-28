@@ -1,26 +1,32 @@
 import React, { useState, useEffect } from "react";
 import AIService from "../../service/AIService";
 import cl from "./Chat.module.css"; 
+import LoadingSpinner from './LoadingSpinner';
 
 export const Chat = () => {
     const [message, setMessage] = useState('');
     const [conversation, setConversation] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
 
     const sendMessage = async () => {
         if (!message.trim()) return;
+        setIsLoading(true);
         const data = await AIService.sendMessage(message);
         setConversation([...data]);
         setMessage('');
+        setIsLoading(false);
     };
 
     const loadData = async () => {
+        setIsLoading(true);
         const { data } = await AIService.getChat();
-        setConversation([...data])
-      };
+        setConversation([...data]);
+        setIsLoading(false);
+    };
     
-      useEffect(() => {
+    useEffect(() => {
         loadData();
-      }, []);
+    }, []);
 
     return (
         <div className={cl.root}>
@@ -30,6 +36,7 @@ export const Chat = () => {
                         {msg.content}
                     </div>
                 ))}
+                {isLoading && <LoadingSpinner />}
             </div>
             <div className={cl.inputs}>
                 <input
