@@ -11,17 +11,27 @@ export const Chat = () => {
     const sendMessage = async () => {
         if (!message.trim()) return;
         setIsLoading(true);
-        const data = await AIService.sendMessage(message);
-        setConversation([...data]);
-        setMessage('');
-        setIsLoading(false);
+        try {
+            const data = await AIService.sendMessage(message);
+            setConversation(data);
+        } catch (error) {
+            console.error("Error sending message:", error);
+        } finally {
+            setIsLoading(false);
+            setMessage('');
+        }
     };
 
     const loadData = async () => {
         setIsLoading(true);
-        const { data } = await AIService.getChat();
-        setConversation([...data]);
-        setIsLoading(false);
+        try {
+            const { data } = await AIService.getChat();
+            setConversation(data);
+        } catch (error) {
+            console.error("Error loading chat:", error);
+        } finally {
+            setIsLoading(false);
+        }
     };
     
     useEffect(() => {
@@ -36,7 +46,11 @@ export const Chat = () => {
                         {msg.content}
                     </div>
                 ))}
-                {isLoading && <LoadingSpinner />}
+                {isLoading && (
+                    <div className={cl.loadingContainer}>
+                        <LoadingSpinner />
+                    </div>
+                )}
             </div>
             <div className={cl.inputs}>
                 <input
@@ -45,8 +59,9 @@ export const Chat = () => {
                     onChange={(e) => setMessage(e.target.value)}
                     onKeyPress={(e) => e.key === 'Enter' && sendMessage()}
                     className={cl.inputText}
+                    disabled={isLoading}
                 />
-                <button onClick={sendMessage} className={cl.sendButton}>Send</button>
+                <button onClick={sendMessage} className={cl.sendButton} disabled={isLoading}>Send</button>
             </div>
         </div>
     );
