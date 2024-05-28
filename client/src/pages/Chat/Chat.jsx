@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import AIService from "../../service/AIService";
 import cl from "./Chat.module.css"; 
 import LoadingSpinner from './LoadingSpinner';
@@ -7,6 +7,13 @@ export const Chat = () => {
     const [message, setMessage] = useState('');
     const [conversation, setConversation] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
+    const chatboxRef = useRef(null);
+
+    const scrollToBottom = () => {
+        if (chatboxRef.current) {
+            chatboxRef.current.scrollTop = chatboxRef.current.scrollHeight;
+        }
+    };
 
     const sendMessage = async () => {
         if (!message.trim()) return;
@@ -33,14 +40,18 @@ export const Chat = () => {
             setIsLoading(false);
         }
     };
-    
+
     useEffect(() => {
         loadData();
     }, []);
 
+    useEffect(() => {
+        scrollToBottom();
+    }, [conversation, isLoading]);
+
     return (
         <div className={cl.root}>
-            <div className={cl.chatbox}>
+            <div className={cl.chatbox} ref={chatboxRef}>
                 {conversation.map((msg, index) => (
                     <div key={index} className={`${cl.message} ${msg.role === 'user' ? cl.user : cl.assistant}`}>
                         {msg.content}
