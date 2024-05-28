@@ -111,7 +111,7 @@ export const Navbar = () => {
           <div className={cl.block}>
             <div className={cl.logoMAIN}>
               <Link to='/'>
-              <img src="../../../InnIT.svg" alt="New Logo" width="73" height="27"></img>
+              <img src="../../../InnIT.svg" alt="New Logo" width="146" height="54"></img>
               </Link>
             </div>
           </div>
