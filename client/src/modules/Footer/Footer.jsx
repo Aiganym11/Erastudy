@@ -108,7 +108,7 @@ export const Footer = () => {
           </div>
         </div>
         <div className={cl.credent}>
-          <div className={cl.mainTitle}>ERAStudy</div>
+          <div className={cl.mainTitle}>InnIT</div>
           <div className={cl.gray}>© 2024</div>
         </div>
       </div>
