@@ -69,8 +69,6 @@ export const Search = () => {
   const options = [
     { value: "priceAscending", label: "Цена по возрастанию" },
     { value: "priceDescending", label: "Цена по убыванию" },
-    { value: "roiAscending", label: "По возрастанию срока окупаемости" },
-    { value: "roiDescending", label: "По убыванию срока окупаемости" },
   ];
   const [selectedOption, setSelectedOption] = useState(options[0]);
   const [isOpen, setIsOpen] = useState(false);
