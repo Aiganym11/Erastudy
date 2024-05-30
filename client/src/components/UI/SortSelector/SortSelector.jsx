@@ -6,9 +6,7 @@ import {Modal} from "../Modal/Modal.jsx";
 export const SortSelector = ({ currentSort, onSortChange }) => {
   const options = [
     { value: "priceAscending", label: "Цена по возрастанию" },
-    { value: "priceDescending", label: "Цена по убыванию" },
-    { value: "roiAscending", label: "По возрастанию срока окупаемости" },
-    { value: "roiDescending", label: "По убыванию срока окупаемости" },
+    { value: "priceDescending", label: "Цена по убыванию" }
   ];
   const [selectedOption, setSelectedOption] = useState(options[0]);
   const [isOpen, setIsOpen] = useState(false);
