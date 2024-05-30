@@ -9,6 +9,7 @@ import LotContactForm from "./LotContactForm.js";
 import Author from "./Author.js";
 import Chat from "./Chat.js";
 import Review from "./Review.js";
+import Schedule from "./Schedule.js";
 export default {
   Product,
   User,
@@ -20,5 +21,6 @@ export default {
   LotContactForm,
   Author,
   Chat,
-  Review
+  Review,
+  Schedule
 };

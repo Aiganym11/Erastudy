@@ -199,22 +199,6 @@ export const Profile = () => {
                 >
                   {t("profile.files")}
                 </div>
-                <div
-                  className={`${cl.switchText} ${
-                    activeTab === "booking" ? cl.active : ""
-                  }`}
-                  onClick={() => setActiveTab("booking")}
-                >
-                  {t("profile.booking")}
-                </div>
-                <div
-                  className={`${cl.switchText} ${
-                    activeTab === "auctions" ? cl.active : ""
-                  }`}
-                  onClick={() => setActiveTab("auctions")}
-                >
-                  {t("profile.auctions")}
-                </div>
               </div>
               <div className={cl.line} />
 

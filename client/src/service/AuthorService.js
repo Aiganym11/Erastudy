@@ -26,6 +26,15 @@ class AuthorService {
     }
   }
 
+  async hire(data) {
+    try {
+      const req = await $host.post(`authors/hire`, data);
+      return req.data;
+    } catch (e) {
+      return null;
+    }
+  }
+
 }
 
 export default new AuthorService();

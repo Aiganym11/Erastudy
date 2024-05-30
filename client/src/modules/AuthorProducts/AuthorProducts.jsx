@@ -5,10 +5,11 @@ import cl from "./AuthorProducts.module.css";
 import { Icon } from "../../components/UI/Icon/Icon.jsx";
 import { Pagination } from "../../components/UI/Pagination/Pagination.jsx";
 import { useTranslation } from "react-i18next";
-export const AuthorProducts = ({ activeTab, isCLoading, products }) => {
+
+export const AuthorProducts = ({ products }) => {
   const { t } = useTranslation();
   const { userData } = useSelector((state) => state.auth);
-  const [isLoading, setIsLoading] = useState(isCLoading);
+  const [isLoading, setIsLoading] = useState(false);
   const [items, setItems] = useState([]);
   const [isFavoriteEmpty, setIsFavoriteEmpty] = useState(
     userData?.favorites?.items?.length === 0
@@ -20,21 +21,16 @@ export const AuthorProducts = ({ activeTab, isCLoading, products }) => {
   const startIndex = (page - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
 
-  const loadData = async () => {
-    if (!products) {
-      setIsLoading(false);
-      return;
-    }
-    setItems(
-      products
-    );
-    setIsLoading(false);
-    setTotalPages(Math.ceil(products?.length / 6));
-  };
+  console.log("Products: ", products)
+  console.log("Is Loading: ", isLoading)
 
   useEffect(() => {
-    loadData();
-  }, [page]);
+    if (products) {
+      setItems(products);
+      setIsLoading(false);
+      setTotalPages(Math.ceil(products.length / itemsPerPage));
+    }
+  }, [products]);
 
   return (
     <div className={cl.wrapper}>
@@ -47,16 +43,7 @@ export const AuthorProducts = ({ activeTab, isCLoading, products }) => {
         </div>
       ) : (
         <div className={cl.items}>
-          {isLoading ? (
-            Array.from({ length: 6 }).map((_, index) => (
-              <ProductCard
-                className={cl.card}
-                key={index}
-                customWidth={275}
-                timer={false}
-              />
-            ))
-          ) : (
+          {(
             <>
               {items.slice(startIndex, endIndex).map((item) => (
                 <div className={cl.item}>
