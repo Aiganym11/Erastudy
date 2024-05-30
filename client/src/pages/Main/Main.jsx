@@ -57,12 +57,6 @@ export const Main = () => {
     <div className={cl.root}>
       <header
         className={cl.header}
-        style={{
-          backgroundImage:
-            "url(" +
-            settings?.mainPageImage +
-            ")",
-        }}
       >
         <div className={cl.bg} />
         <div className='wrapper'>

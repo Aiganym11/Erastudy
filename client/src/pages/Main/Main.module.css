@@ -1,6 +1,6 @@
 .header {
   height: 259px;
-  /* background: url("inlotbg.jpeg"); */
+  background: url("inlotbg.jpeg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -12,11 +12,6 @@
   width: 100%;
   z-index: 0;
   height: 259px;
-  background: linear-gradient(
-    360deg,
-    rgba(78, 119, 251, 0.6) 6.46%,
-    rgba(0, 0, 0, 0) 73.83%
-  );
 }
 
 .texts {
