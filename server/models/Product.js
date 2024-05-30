@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import User from "./User.js";
 export const PRODUCT_TYPES = [
   "Books",
   "Courses"
@@ -17,7 +18,7 @@ const schema = new mongoose.Schema({
   rating: { type: Number, required: false },
   author: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Author",
+    ref: "User",
     required: true,
   },
   lessons: {
@@ -30,6 +31,16 @@ const schema = new mongoose.Schema({
   },
   description: { type: [String], required: true },
   book_url: { type: String, required: false },
+});
+
+schema.pre('save', async function (next) {
+  if (this.isModified('author')) {
+    const user = await User.findById(this.author);
+    if (!user || user.role !== 'Teacher') {
+      return next(new Error('Author must be a user with the role of Teacher'));
+    }
+  }
+  next();
 });
 
 export default mongoose.model("Product", schema);

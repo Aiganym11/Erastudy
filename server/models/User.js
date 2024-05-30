@@ -20,6 +20,12 @@ const schema = new mongoose.Schema({
     required: false,
   },
   role: { type: String, required: false },
+  skills: { type: [String], required: false },
+  experience: { type: Number, required: false },
+  hourlyRate: { type: Number, required: false },
+  profilePicture: { type: String, required: false },
+  description: { type: String, required: false },
+  age: { type: Number, required: false },
 });
 
 export default mongoose.model("User", schema);

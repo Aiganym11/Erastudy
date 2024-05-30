@@ -12,6 +12,11 @@ class AuthorController {
     return res.status(response.status).json(response);
   }
 
+  async hire(req, res) {
+    const response = await AuthorService.hire(req.body);
+    return res.status(response.status).json(response);
+  }
+
 }
 
 export default new AuthorController();
