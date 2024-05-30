@@ -56,29 +56,36 @@ async function fetchHTML(url) {
     await connectDB();
 
     for(const teacher of teachers){
-        const exists = await models.Author.findOne({
-            email: teacher.email
+        const exists = await models.User.findOne({
+            email: teacher.email,
+            role: "Teacher"
         })
 
         const data = {
-            firstName: teacher.name,
+            name: teacher.name,
             email: teacher.email,
             hourlyRate: 10000,
             experience: 10,
             profilePicture: teacher.imageUrl,
-            description: teacher.education
-        }
+            description: teacher.education,
+            role: "Teacher",
+            password: '$2b$10$mUgaimcNzumZ3ePbGz2AWe31oaOP.92xREIW78hPhIDpCs5CY0RrS',
+            isVerified: true,
+            verificationCode: "137-E4YW64-EKwOdi-70J9k1-V1B467-KRX71D-133-XDxkeJ-yndqCP-hWnjg3-915-yTmmRr-rV3tYL-5gwcIB-57-z3ezjO-juQQzE-466-114-r1Z6qs-825-wB4e7c-zE80Nq-998",
+            age: 30
+                 }
 
         if(exists) {
-            await models.Author.findOneAndUpdate({
-                email: teacher.email
+            await models.User.findOneAndUpdate({
+                email: teacher.email,
+                role: "Teacher"
             },
             data)
 
             continue
         }
 
-        await models.Author.create(data)
+        await models.User.create(data)
 
         console.log(`Uploaded teacher: `, teacher.name)
     }

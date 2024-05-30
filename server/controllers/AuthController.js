@@ -107,7 +107,7 @@ class AuthController {
           token,
           user: {
             ...user._doc,
-            favorites: { ...favorite._doc },
+            favorites: { ...favorite?._doc },
             password: null,
             verificationCode: null,
             phoneVerificationCode: null,

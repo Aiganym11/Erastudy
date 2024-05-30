@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const TeacherCard = ({ teacher }) => {
- const name = `${teacher.firstName}${teacher.lastName ? ' ' + teacher.lastName : ''}`;
+ const name = teacher.name || '';
 
  const navigate = useNavigate();
 
