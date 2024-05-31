@@ -20,6 +20,7 @@ import cl from "./Main.module.css";
 import { CitiesGallery } from "../../modules/CitiesGallery/CitiesGallery";
 import { CountriesGallery } from "../../modules/CountriesGallery/CountriesGallery.jsx";
 import { ReviewsGallery } from "../../modules/ReviewsGallery/ReviewsGallery.jsx";
+import { TedExGallery } from "../../modules/TedExGalllery/TedExGallery.jsx";
 
 export const Main = () => {
   const navigate = useNavigate();
@@ -154,7 +155,7 @@ export const Main = () => {
                 </div>
                 <div className={cl.btn}>
                   <Button
-                    onClick={() => navigate(settings?.mainPageBannerLink)}
+                    onClick={() => window.open('https://leetcode.com/#', '_blank')}
                     type='fill'
                     className={cl.button}
                   >
@@ -242,10 +243,11 @@ export const Main = () => {
                       {t("section2.title3")}
                     </div>
                   </div>
-                  <Link className={`${cl.more} title_md`} to='/all/business'>
-                    {t("section2.more")}
-                  </Link>
                 </div>
+
+                <div className={cl.gallery}>
+            <TedExGallery />
+          </div>
 
                 <div className={cl.items}>
                   {isLoading
