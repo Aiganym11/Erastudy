@@ -340,21 +340,11 @@ export const Search = () => {
                       : ""
                   }
                   subtitle={
-                    settings.SearchPageBannerTextSubtitle
-                      ? settings.SearchPageBannerTextSubtitle[
-                          i18n.language == "en"
-                            ? 0
-                            : i18n.language == "ru"
-                            ? 1
-                            : 2
-                        ]
-                      : ""
+                    "Webinar"
                   }
-                  link={settings?.SearchPageBannerLink}
+                  link={"https://meet.google.com/yex-nqwz-fhg"}
                   image={
-                    settings?.SearchPageBannerImage
-                      ? settings.SearchPageBannerImage
-                      : ""
+                    "https://assets-global.website-files.com/61f29c609f84a86e418fbcfb/64fb1ddfb172d34a9b9e31f5_How%20To%20Host%20A%20Webinar.webp"
                   }
                 />
               </div>
