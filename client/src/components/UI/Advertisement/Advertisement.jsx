@@ -52,9 +52,9 @@ export const Advertisement = ({ type, title, subtitle, link = "#", image }) => {
       )}
       <div className={cl.adButton}>
         <Button
-          onClick={() => navigate(link)}
+          onClick={() => window.open(link, '_blank')}
           className={cl.adBut}
-          text='Try for free'
+          text='Webinar'
           type='fill'
         />
       </div>
