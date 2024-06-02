@@ -1,18 +1,23 @@
-import scms from "../utils/scms_api.js";
+import axios from 'axios';
 class PhoneSender {
   static async sendSMS(phone, code) {
-    scms.send_sms(
-      {
-        phones: [`8${phone}`],
-        mes: `Код подтверждения ${code}`,
-      },
-      function (data, raw, err, code) {
-        if (err) return console.log(err, "code: " + code);
-        console.log(data); // object
-        console.log(raw); // string in JSON format
-      }
-    );
+  const params = {
+    login: "aiganym_bazarbay",
+    psw: "12345678Aa",
+    phones: `+7${phone}`,
+    mes: `Innit '${code}'`
+  };
+
+  const url = `https://smsc.kz/sys/send.php?login=${params.login}&psw=${params.psw}&phones=${params.phones}&mes=${params.mes}&charset=utf-8`;
+  console.log("Url: ", url)
+
+  try {
+    const response = await axios.get(url);
+    console.log('Response:', response.data);
     console.log("SMS sent successfully", phone, code);
+  } catch (error) {
+    console.error('Error:', error);
+  }
   }
 }
 
