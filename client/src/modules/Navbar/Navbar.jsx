@@ -10,7 +10,7 @@ import { Modal } from "../../components/UI/Modal/Modal.jsx";
 import validate from "../../utils/validate.js";
 import LotContactFormService from "../../service/LotContactFormService.js";
 import ProductService from "../../service/ProductService";
-import presentation from "../../assets/Камила Жантемир.pdf";
+
 
 export const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);

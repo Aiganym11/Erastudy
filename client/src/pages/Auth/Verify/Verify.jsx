@@ -184,11 +184,6 @@ export const Verify = ({ navigation }) => {
       <div className='wrapper'>
         <div className={cl.wrapper}>
           <div className={cl.side}>
-            <div className={cl.title}>
-              <Icon name='inlot1' />
-              <Icon name='inlot2' />
-              <Icon name='inlot3' />
-            </div>
           </div>
           <div className={cl.right}>
             {isLoading ? (
