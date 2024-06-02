@@ -969,3 +969,11 @@
   background-color: #ccc;
   cursor: not-allowed;
 }
+
+
+.authorImage {
+  width: 25spx;
+  height: 25px; 
+  border-radius: 50%; 
+  object-fit: cover;
+}

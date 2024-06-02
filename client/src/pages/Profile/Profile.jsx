@@ -6,9 +6,7 @@ import { EditModalForm } from "../../modules/EditModalForm/EditModalForm.jsx";
 import { ProfileFavorites } from "../../modules/ProfileFavorites/ProfileFavorites";
 import { BuyHistory } from "../../modules/BuyHistory/BuyHistory";
 import { useLocation } from "react-router-dom";
-import { BookingHistory } from "../../modules/BookingHistory/BookingHistory";
 import { FilesHistory } from "../../modules/FilesHistory/FilesHistory";
-import { AuctionsHistory } from "../../modules/AuctionsHistory/AuctionsHistory";
 import { useTranslation } from "react-i18next";
 
 export const Profile = () => {
@@ -215,25 +213,9 @@ export const Profile = () => {
                   <BuyHistory activeTab={activeTab} isCLoading={isLoading} />
                 </div>
               )}
-              {activeTab === "booking" && (
-                <div className={cl.history}>
-                  <BookingHistory
-                    activeTab={activeTab}
-                    isCLoading={isLoading}
-                  />
-                </div>
-              )}
               {activeTab === "files" && (
                 <div className={cl.history}>
                   <FilesHistory activeTab={activeTab} isCLoading={isLoading} />
-                </div>
-              )}
-              {activeTab === "auctions" && (
-                <div className={cl.history}>
-                  <AuctionsHistory
-                    activeTab={activeTab}
-                    isLoading={isLoading}
-                  />
                 </div>
               )}
             </div>

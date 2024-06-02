@@ -39,9 +39,9 @@ class ProductService {
   async getAuthor(id) {
     try {
       if (!id) return { status: 400, data: "Id not specified", id };
-      const developer = await models.Author.findById(id);
-      if (!developer) return { status: 404, data: "Author not found" };
-      return { status: 200, data: developer };
+      const teacher = await models.User.findById(id);
+      if (!teacher) return { status: 404, data: "Teacher not found" };
+      return { status: 200, data: teacher };
     } catch (e) {
       return { status: 500, data: e };
     }

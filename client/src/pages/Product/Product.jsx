@@ -24,17 +24,12 @@ export const Product = () => {
   const user = useSelector((state) => state.auth);
   const [property, setProduct] = useState(null);
   const [author, setAuthor] = useState(null);
-  const [activeButton, setActiveButton] = useState(0);
   const [questionData, setQuestionData] = useState([]);
   const [courseRating, setCourseRating] = useState(0);
   const [starRating, setStarRating] = useState(0);
   const navigate = useNavigate();
 
   const [descriptions, setDescriptions] = useState([]);
-
-  const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(
-    Array.from({ length: 5 }, () => false)
-  );
 
   const { id } = useParams();
 
@@ -132,14 +127,6 @@ export const Product = () => {
     loadData();
   }, []);
 
-  useEffect(() => {
-  }, [activeButton]);
-
-  useEffect(() => {
-    console.log(property);
-    console.log(99, questionData);
-  }, [property]);
-
   return (
     <div className='wrapper'>
       <Breadcrumbs
@@ -197,11 +184,15 @@ export const Product = () => {
               </div>
               <div className={cl.emblem}  onClick={handleAuthorEmblemClick}>
                 <div className={cl.emblemIcon}>
+                {author && author.profilePicture ? (
+                  <img src={author.profilePicture} alt={author.name} className={cl.authorImage} />
+                ) : (
                   <Icon name='emblem' />
+                )}
                 </div>
                 <div className={cl.emblemText}>
                   {author ? (
-                    `${author.firstName}${author.lastName ? ' ' + author.lastName : ''}`
+                    `${author.name}`
                   ) : (
                     <Skeleton width={100} />
                   )}
