@@ -24,17 +24,12 @@ export const Product = () => {
   const user = useSelector((state) => state.auth);
   const [property, setProduct] = useState(null);
   const [author, setAuthor] = useState(null);
-  const [activeButton, setActiveButton] = useState(0);
   const [questionData, setQuestionData] = useState([]);
   const [courseRating, setCourseRating] = useState(0);
   const [starRating, setStarRating] = useState(0);
   const navigate = useNavigate();
 
   const [descriptions, setDescriptions] = useState([]);
-
-  const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(
-    Array.from({ length: 5 }, () => false)
-  );
 
   const { id } = useParams();
 
@@ -131,14 +126,6 @@ export const Product = () => {
   useEffect(() => {
     loadData();
   }, []);
-
-  useEffect(() => {
-  }, [activeButton]);
-
-  useEffect(() => {
-    console.log(property);
-    console.log(99, questionData);
-  }, [property]);
 
   return (
     <div className='wrapper'>
