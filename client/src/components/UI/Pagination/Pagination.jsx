@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import cl from "./Pagination.module.css";
 import { Icon } from "../Icon/Icon.jsx";
 
