@@ -67,8 +67,8 @@ export const Search = () => {
   };
 
   const options = [
-    { value: "priceAscending", label: "Цена по возрастанию" },
-    { value: "priceDescending", label: "Цена по убыванию" },
+    { value: "priceAscending", label: "Ascending price" },
+    { value: "priceDescending", label: "Descending price" },
   ];
   const [selectedOption, setSelectedOption] = useState(options[0]);
   const [isOpen, setIsOpen] = useState(false);
@@ -340,11 +340,21 @@ export const Search = () => {
                       : ""
                   }
                   subtitle={
-                    "Webinar"
+                    settings.SearchPageBannerTextSubtitle
+                      ? settings.SearchPageBannerTextSubtitle[
+                          i18n.language == "en"
+                            ? 0
+                            : i18n.language == "ru"
+                            ? 1
+                            : 2
+                        ]
+                      : ""
                   }
-                  link={"https://meet.google.com/yex-nqwz-fhg"}
+                  link={settings?.SearchPageBannerLink}
                   image={
-                    "https://assets-global.website-files.com/61f29c609f84a86e418fbcfb/64fb1ddfb172d34a9b9e31f5_How%20To%20Host%20A%20Webinar.webp"
+                    settings?.SearchPageBannerImage
+                      ? settings.SearchPageBannerImage
+                      : ""
                   }
                 />
               </div>

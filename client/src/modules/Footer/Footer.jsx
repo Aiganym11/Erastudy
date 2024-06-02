@@ -3,7 +3,6 @@ import cl from "./Footer.module.css";
 import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
 import { Icon } from "../../components/UI/Icon/Icon";
-import presentation from "../../assets/Камила Жантемир.pdf";
 
 export const Footer = () => {
   const navigate = useNavigate();
@@ -67,7 +66,7 @@ export const Footer = () => {
               </Link> */}
               <Link
                 className={`${cl.link}  headline`}
-                to={presentation}
+                to={""}
                 target='_blank'
               >
                 {t("footer.center.2")}
