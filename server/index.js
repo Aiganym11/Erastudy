@@ -8,8 +8,6 @@ import routers from "./router/index.js";
 
 import scms from "./utils/scms_api.js";
 
-import cron from "node-cron";
-
 import AdminJS from "adminjs";
 import AdminJSExpress from "@adminjs/express";
 import session from "express-session";
@@ -68,13 +66,7 @@ export const startAdmin = async () => {
   };
   const osVersion = process.platform;
   const Components = {
-    Dashboard:
-      osVersion == "darwin" || osVersion == "linux"
-        ? componentLoader.add("Dashboard", "./admin/dashboard")
-        : componentLoader.add(
-            "Dashboard",
-            "C:\\Users\\Assyl\\Desktop\\ERAStudy\\ERAStudy\\server\\admin\\dashboard.jsx"
-          ),
+    Dashboard: componentLoader.add("Dashboard", "./admin/dashboard")
   };
 
   AdminJS.registerAdapter({
@@ -176,15 +168,11 @@ const makeBackup = () => {
     }
   });
 };
+
 export const TGBot = await InitTelegramBot();
 const startServer = async () => {
   await connectDB(process.env.MONGO_URI);
   await startAdmin();
-  cron.schedule("0 0 * * *", async () => {
-    console.log(`Running cron job ${new Date().toISOString()}`);
-    await scheduleBookings();
-    // makeBackup();
-  });
   configureSMS();
   app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

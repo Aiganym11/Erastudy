@@ -197,11 +197,15 @@ export const Product = () => {
               </div>
               <div className={cl.emblem}  onClick={handleAuthorEmblemClick}>
                 <div className={cl.emblemIcon}>
+                {author && author.profilePicture ? (
+                  <img src={author.profilePicture} alt={author.name} className={cl.authorImage} />
+                ) : (
                   <Icon name='emblem' />
+                )}
                 </div>
                 <div className={cl.emblemText}>
                   {author ? (
-                    `${author.firstName}${author.lastName ? ' ' + author.lastName : ''}`
+                    `${author.name}`
                   ) : (
                     <Skeleton width={100} />
                   )}
