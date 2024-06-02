@@ -129,9 +129,6 @@ export const Navbar = () => {
             <div className={cl.item}>
               <Link
                 to='/teachers'
-                // to={presentation}
-                // download={presentation}
-                // target='_blank'
                 className={`${cl.link} headline`}
               >
                 {t("navbar.link3")}
@@ -140,9 +137,6 @@ export const Navbar = () => {
             <div className={cl.item}>
               <Link
                 to='/chat'
-                // to={presentation}
-                // download={presentation}
-                // target='_blank'
                 className={`${cl.link} headline`}
               >
                 AI Assistant
