@@ -122,7 +122,7 @@ export const Navbar = () => {
               </Link>
             </div>
             <div className={cl.item}>
-              <Link to='/' className={`${cl.link} headline`}>
+              <Link to='/all/courses' className={`${cl.link} headline`}>
                 {t("navbar.link2")}
               </Link>
             </div>
