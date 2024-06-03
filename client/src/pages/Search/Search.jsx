@@ -352,9 +352,7 @@ export const Search = () => {
                   }
                   link={settings?.SearchPageBannerLink}
                   image={
-                    settings?.SearchPageBannerImage
-                      ? settings.SearchPageBannerImage
-                      : ""
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzEZTEySjRs4SFBGbGIKHVomK1XYJloi9HOw&s"
                   }
                 />
               </div>
