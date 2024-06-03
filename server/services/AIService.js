@@ -2,7 +2,7 @@ import models from "../models/index.js";
 import OpenAI from 'openai';
 
 const openai = new OpenAI({
-    apiKey: 'sk-proj-tNa6LVQLv5yN7OEv5B4pT3BlbkFJ7jobwuXUDOy9l5SAB6Gx',
+    apiKey: 'sk-proj-8y3MjXwU14XP2zsmSCMnT3BlbkFJMyELYLUQisNCofiqBGLO',
   });
 
 class AIService {
