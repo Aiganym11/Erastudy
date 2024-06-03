@@ -182,6 +182,7 @@ export const ShowMore = () => {
               : null
           }
           link={settings.showMorePageBannerLink}
+          image={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzEZTEySjRs4SFBGbGIKHVomK1XYJloi9HOw&s"}
         />
       </div>
       <div className='wrapper'>
