@@ -6,7 +6,6 @@ import Payment from "./Payment.js";
 import Sells from "./Sells.js";
 import Contact from "./Contact.js";
 import LotContactForm from "./LotContactForm.js";
-import Author from "./Author.js";
 import Chat from "./Chat.js";
 import Review from "./Review.js";
 import Schedule from "./Schedule.js";
@@ -19,7 +18,6 @@ export default {
   Settings,
   Contact,
   LotContactForm,
-  Author,
   Chat,
   Review,
   Schedule

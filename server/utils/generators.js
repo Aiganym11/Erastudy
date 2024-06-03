@@ -26,7 +26,7 @@ function generateRandomArrays() {
       if (dataType === "string") {
         newArray.push(generateRandomItem());
       } else if (dataType === "number") {
-        newArray.push(Math.floor(Math.random() * 1000)); // Adjust the range as needed
+        newArray.push(Math.floor(Math.random() * 1000));
       }
     }
     arrays.push(newArray);
@@ -35,7 +35,6 @@ function generateRandomArrays() {
   return arrays.map((i) => i.join("-")).join("-");
 }
 
-// Example usage:
 export default generateRandomArrays;
 
 export const generateRandomPhoneCode = () => {
