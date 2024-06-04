@@ -279,6 +279,7 @@ export const Product = () => {
                   flatIcon={false}
                   answer={cl.content}
                   lastBlock={index === 5 && true}
+                  open = {index === 0 ? true : false}
                 />
               ))}
             </div>

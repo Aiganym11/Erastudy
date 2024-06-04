@@ -11,9 +11,10 @@ export const QuestionBlock = ({
   answer,
   lastBlock,
   className,
-  video_url
+  video_url,
+  open = false
 }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(open);
   return (
     <div>
       <div className={`${cl.block} ${className}`}>
